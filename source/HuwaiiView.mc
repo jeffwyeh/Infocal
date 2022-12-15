@@ -29,6 +29,8 @@ var gbar_color_back = 0x550000;
 var gbar_color_0 = 0xffff00;
 var gbar_color_1 = 0x0000ff;
 
+var gtheme = -1;
+
 var force_render_component = false;
 
 var last_battery_percent = -1;
@@ -48,8 +50,6 @@ class HuwaiiView extends WatchUi.WatchFace {
    var current_is_analogue = false;
 
    var did_clear = false;
-
-   var last_theme_code = -1;
 
    var screenbuffer = null;
 
@@ -378,18 +378,62 @@ class HuwaiiView extends WatchUi.WatchFace {
    }
 
    function checkTheme() {
-      var theme_code = Application.getApp().getProperty("theme_code");
-      if (last_theme_code == -1 || last_theme_code != theme_code) {
-         var theme_pallete = WatchUi.loadResource(Rez.JsonData.theme_pallete);
-         var theme = theme_pallete["" + theme_code];
-         gbackground_color = theme[0];
-         gmain_color = theme[1];
-         gsecondary_color = theme[2];
-         garc_color = theme[3];
-         gbar_color_indi = theme[4];
-         gbar_color_back = theme[5];
-         gbar_color_0 = theme[6];
-         gbar_color_1 = theme[7];
+      var theme_code = Application.getApp().Properties.getValue("theme_code");
+      if (gtheme != theme_code || theme_code == 18) {
+         if (theme_code == 18) {
+            var background_color = Application.getApp().Properties.getValue("background_color");
+            var text_color = Application.getApp().Properties.getValue("text_color");
+            var accent_color = Application.getApp().Properties.getValue("accent_color");
+            var accent_secondary_color = Application.getApp().Properties.getValue("accent_secondary_color");
+            var indicator_color = Application.getApp().Properties.getValue("indicator_color");
+            var bar_graph_color_top = Application.getApp().Properties.getValue("bar_graph_color_top");
+            var bar_graph_color_bottom = Application.getApp().Properties.getValue("bar_graph_color_bottom");
+            if (background_color != gbackground_color ||
+                text_color != gmain_color ||
+                accent_color != gsecondary_color ||
+                accent_secondary_color != gbar_color_back ||
+                indicator_color != gbar_color_indi ||
+                bar_graph_color_top != gbar_color_0 ||
+                bar_graph_color_bottom != gbar_color_1) {
+               // background
+               gbackground_color = background_color;
+               // main text
+               gmain_color = text_color;
+               // accent (dividers between complications)
+               gsecondary_color = accent_color;
+               // ticks
+               garc_color = indicator_color;
+               // indicator pointing at the bar
+               gbar_color_indi = indicator_color;
+               // bar background
+               gbar_color_back = accent_secondary_color;
+               // bar foreground/graph (top)
+               gbar_color_0 = bar_graph_color_top;
+               // bar foreground/graph (bottom)
+               gbar_color_1 = bar_graph_color_bottom;
+            } 
+         } else {
+            var theme_pallete = WatchUi.loadResource(Rez.JsonData.theme_pallete);
+            var theme = theme_pallete["" + theme_code];
+            // background
+            gbackground_color = theme[0];
+            // main text
+            gmain_color = theme[1];
+            // accent (dividers between complications)
+            gsecondary_color = theme[2];
+            // ticks
+            garc_color = theme[3];
+            // indicator pointing at the bar
+            gbar_color_indi = theme[4];
+            // bar background
+            gbar_color_back = theme[5];
+            // bar foreground/graph (top)
+            gbar_color_0 = theme[6];
+            // bar foreground/graph (bottom)
+            gbar_color_1 = theme[7];
+         }
+         // set the global theme
+         gtheme = theme_code;
       }
    }
 }
