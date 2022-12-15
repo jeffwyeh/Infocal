@@ -183,10 +183,7 @@ class EmptyDataField {
    }
 }
 
-///////////////////
-// weather stage //
-///////////////////
-
+/* WIND */
 class WindField extends BaseDataField {
    var wind_direction_mapper;
 
@@ -213,7 +210,6 @@ class WindField extends BaseDataField {
    }
 
    function cur_label(value) {
-      // WEATHER
       var need_minimal = App.getApp().getProperty("minimal_data");
       var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
       if (weather_data != null) {
@@ -238,10 +234,7 @@ class WindField extends BaseDataField {
    }
 }
 
-///////////////////////
-// custom text stage //
-///////////////////////
-
+/* CUSTOM TEXT */
 class CTextField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -256,10 +249,7 @@ class CTextField extends BaseDataField {
    }
 }
 
-///////////////////
-// weather stage //
-///////////////////
-
+/* WEATHER */
 class WeatherField extends BaseDataField {
    var weather_icon_mapper;
 
@@ -298,7 +288,6 @@ class WeatherField extends BaseDataField {
    }
 
    function cur_label(value) {
-      // WEATHER
       var garmin_weather = App.getApp().Weather.getCurrentConditions();
       if (garmin_weather != null) {
          var settings = Sys.getDeviceSettings();
@@ -314,10 +303,7 @@ class WeatherField extends BaseDataField {
    }
 }
 
-/////////////////
-// AM/PM stage //
-/////////////////
-
+/* AM/PM INDICATOR */
 class AMPMField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -334,10 +320,7 @@ class AMPMField extends BaseDataField {
    }
 }
 
-///////////////////////////
-// temparature hl stage //
-///////////////////////////
-
+/* TEMPERATURE HIGH/LOW */
 class TemparatureHLField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -378,10 +361,7 @@ class TemparatureHLField extends BaseDataField {
    }
 }
 
-///////////////////////////
-// temparature out stage //
-///////////////////////////
-
+/* TEMPERATURE OUTSIDE */
 class TemparatureOutField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -416,10 +396,7 @@ class TemparatureOutField extends BaseDataField {
    }
 }
 
-/////////////////////
-// Weekcount stage //
-/////////////////////
-
+/* WEEK COUNT */
 class WeekCountField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -482,14 +459,7 @@ class WeekCountField extends BaseDataField {
    }
 }
 
-/////////////////////////
-// end Weekcount stage //
-/////////////////////////
-
-/////////////////////
-// Countdown stage //
-/////////////////////
-
+/* COUNTDOWN */
 class CountdownField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -509,14 +479,7 @@ class CountdownField extends BaseDataField {
    }
 }
 
-/////////////////////////
-// end countdown stage //
-/////////////////////////
-
-//////////////////////////
-// time secondary stage //
-//////////////////////////
-
+/* SECONDARY TIME */
 class TimeSecondaryField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -552,14 +515,7 @@ class TimeSecondaryField extends BaseDataField {
    }
 }
 
-//////////////////////////////
-// end time secondary stage //
-//////////////////////////////
-
-////////////////
-// baro stage //
-////////////////
-
+/* BAROMETER */
 class BarometerField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -671,14 +627,7 @@ class BarometerField extends BaseDataField {
    }
 }
 
-////////////////////
-// end baro stage //
-////////////////////
-
-/////////////////////////
-// distance week stage //
-/////////////////////////
-
+/* DISTANCE FOR WEEK */
 class WeekDistanceField extends BaseDataField {
    var days;
 
@@ -779,14 +728,7 @@ class WeekDistanceField extends BaseDataField {
    }
 }
 
-/////////////////////////////
-// end distance week stage //
-/////////////////////////////
-
-////////////////////////
-// phone status stage //
-////////////////////////
-
+/* PHONE STATUS */
 class PhoneField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -802,14 +744,7 @@ class PhoneField extends BaseDataField {
    }
 }
 
-////////////////////////////
-// end phone status stage //
-////////////////////////////
-
-//////////////////////
-// group noti stage //
-//////////////////////
-
+/* GROUP NOTIFICATION */
 class GroupNotiField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -830,14 +765,7 @@ class GroupNotiField extends BaseDataField {
    }
 }
 
-//////////////////////////
-// end group noti stage //
-//////////////////////////
-
-/////////////////
-// floor stage //
-/////////////////
-
+/* FLOORS CLIMBED */
 class FloorField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -877,14 +805,7 @@ class FloorField extends BaseDataField {
    }
 }
 
-/////////////////////
-// end floor stage //
-/////////////////////
-
-///////////////
-// sun stage //
-///////////////
-
+/* SUNRISE/SUNSET */
 class SunField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1121,14 +1042,7 @@ class SunField extends BaseDataField {
    }
 }
 
-///////////////////
-// end sun stage //
-///////////////////
-
-///////////////////////
-// temparature stage //
-///////////////////////
-
+/* ON DEVICE TEMPERATURE */
 class TemparatureField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1171,14 +1085,7 @@ class TemparatureField extends BaseDataField {
    }
 }
 
-///////////////////////////
-// end temparature stage //
-///////////////////////////
-
-////////////////////
-// altitude stage //
-////////////////////
-
+/* ALTITUDE */
 class AltitudeField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1238,14 +1145,7 @@ class AltitudeField extends BaseDataField {
    }
 }
 
-////////////////////////
-// end altitude stage //
-////////////////////////
-
-/////////////////
-// alarm stage //
-/////////////////
-
+/* ALARM */
 class AlarmField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1258,14 +1158,7 @@ class AlarmField extends BaseDataField {
    }
 }
 
-/////////////////////
-// end alarm stage //
-/////////////////////
-
-////////////////////////
-// notification stage //
-////////////////////////
-
+/* NOTIFICATIONS */
 class NotifyField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1278,14 +1171,7 @@ class NotifyField extends BaseDataField {
    }
 }
 
-////////////////////////////
-// end notification stage //
-////////////////////////////
-
-////////////////
-// time stage //
-////////////////
-
+/* TIME */
 class TimeField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1314,14 +1200,7 @@ class TimeField extends BaseDataField {
    }
 }
 
-////////////////////
-// end time stage //
-////////////////////
-
-////////////////
-// date stage //
-////////////////
-
+/* DATE */
 class DateField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1332,14 +1211,7 @@ class DateField extends BaseDataField {
    }
 }
 
-////////////////////
-// end date stage //
-////////////////////
-
-//////////////////
-// active stage //
-//////////////////
-
+/* ACTIVE MINUTES */
 class ActiveField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1368,14 +1240,7 @@ class ActiveField extends BaseDataField {
    }
 }
 
-//////////////////////
-// end active stage //
-//////////////////////
-
-////////////////////
-// distance stage //
-////////////////////
-
+/* DISTANCE */
 class DistanceField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1425,14 +1290,7 @@ class DistanceField extends BaseDataField {
    }
 }
 
-////////////////////////
-// end distance stage //
-////////////////////////
-
-////////////////////
-// calories stage //
-////////////////////
-
+/* CALORIES */
 class CaloField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1490,14 +1348,7 @@ class CaloField extends BaseDataField {
    }
 }
 
-////////////////////////
-// end calories stage //
-////////////////////////
-
-////////////////
-// move stage //
-////////////////
-
+/* MOVE BAR */
 class MoveField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1534,14 +1385,7 @@ class MoveField extends BaseDataField {
    }
 }
 
-////////////////////
-// end move stage //
-////////////////////
-
-/////////////////
-// steps stage //
-/////////////////
-
+/* STEPS */
 class StepField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1581,14 +1425,7 @@ class StepField extends BaseDataField {
    }
 }
 
-/////////////////////
-// end steps stage //
-/////////////////////
-
-///////////////////
-// battery stage //
-///////////////////
-
+/* BATTERY */
 class BatteryField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1661,14 +1498,7 @@ class BatteryField extends BaseDataField {
    }
 }
 
-///////////////////////
-// end battery stage //
-///////////////////////
-
-//////////////
-// HR stage //
-//////////////
-
+/* HEART RATE */
 class HRField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1733,14 +1563,7 @@ function _retrieveHeartrate() {
    return currentHeartrate.toFloat();
 }
 
-//////////////////
-// end HR stage //
-//////////////////
-
-//////////////
-// BodyBattery stage //
-//////////////
-
+/* BODY BATTERY */
 class BodyBatteryField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1796,14 +1619,7 @@ function _retrieveBodyBattery() {
    return currentBodyBattery.toFloat();
 }
 
-//////////////////
-// end BodyBattery stage //
-//////////////////
-
-//////////////
-// Stress stage //
-//////////////
-
+/* STRESS */
 class StressField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1859,14 +1675,7 @@ function _retrieveStress() {
    return currentStress.toFloat();
 }
 
-//////////////////
-// end Stress stage //
-//////////////////
-
-//////////////
-// Body Battery and Stress stage //
-//////////////
-
+/* BODY BATTERY/STRESS COMBINED */
 class BodyBatteryStressField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
@@ -1910,7 +1719,3 @@ class BodyBatteryStressField extends BaseDataField {
       return false;
    }
 }
-
-//////////////////
-// end Body Battery and Stress stage //
-//////////////////
