@@ -368,31 +368,18 @@ class TemparatureOutField extends BaseDataField {
    }
 
    function cur_label(value) {
-      // WEATHER
-      var need_minimal = App.getApp().getProperty("minimal_data");
-      var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
-      if (weather_data != null) {
+      var garmin_weather = App.getApp().Weather.getCurrentConditions();
+      if (garmin_weather != null) {
          var settings = Sys.getDeviceSettings();
-         var temp = weather_data["temp"];
          var unit = "°C";
+         var temp = garmin_weather.temperature;
          if (settings.temperatureUnits == System.UNIT_STATUTE) {
             temp = temp * (9.0 / 5) + 32; // Convert to Farenheit: ensure floating point division.
             unit = "°F";
          }
-         value = temp.format("%d") + unit;
-
-         if (need_minimal) {
-            return value;
-         } else {
-            return Lang.format("TEMP $1$", [value]);
-         }
-      } else {
-         if (need_minimal) {
-            return "--";
-         } else {
-            return "TEMP --";
-         }
+         return "TEMP " + temp.format("%d") + unit;
       }
+      return "--";
    }
 }
 
