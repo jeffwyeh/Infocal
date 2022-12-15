@@ -24,7 +24,6 @@
     <property id="comp4h" type="number">31</property>
     <property id="comp6h" type="number">5</property>
     <property id="comp8h" type="number">4</property>
-    <!-- <property id="comp10h" type="number">6</property> -->
     <property id="comp10h" type="number">25</property>
 
     <property id="compbart" type="number">9</property>
@@ -37,7 +36,6 @@
     
     <property id="utc_timezone" type="number">0</property>
     <property id="utc_shift" type="boolean">false</property>
-    <!-- <property id="date_format" type="number">0</property> -->
     <property id="date_format" type="number">5</property>
     
     <property id="battery_format" type="number">0</property>
@@ -48,5 +46,4 @@
     <property id="barometer_unit" type="number">0</property>
     
     <property id="ctext_input" type="string"></property>
-
 </properties>
