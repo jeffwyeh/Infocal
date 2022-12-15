@@ -1,3 +1,6 @@
+Release AppId: 5b60fca9-7261-4e29-b813-a52247aa42ca
+Beta AppId: d70bfdc7-e083-44c6-adca-af14fd5bb48d
+
 # Infocal
 Infocal, a watchface for Garmin devices
 
