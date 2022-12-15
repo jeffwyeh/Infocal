@@ -111,6 +111,9 @@
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="28">@Strings.wind</listEntry>
+            <listEntry value="29">@Strings.bodybattery</listEntry>
+            <listEntry value="30">@Strings.stress</listEntry>
+            <listEntry value="31">@Strings.bodybattstress</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp2h" title="@Strings.comp2h">
@@ -143,6 +146,9 @@
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="28">@Strings.wind</listEntry>
+            <listEntry value="29">@Strings.bodybattery</listEntry>
+            <listEntry value="30">@Strings.stress</listEntry>
+            <listEntry value="31">@Strings.bodybattstress</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp4h" title="@Strings.comp4h">
@@ -175,6 +181,9 @@
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="28">@Strings.wind</listEntry>
+            <listEntry value="29">@Strings.bodybattery</listEntry>
+            <listEntry value="30">@Strings.stress</listEntry>
+            <listEntry value="31">@Strings.bodybattstress</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp6h" title="@Strings.comp6h">
@@ -207,6 +216,9 @@
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="28">@Strings.wind</listEntry>
+            <listEntry value="29">@Strings.bodybattery</listEntry>
+            <listEntry value="30">@Strings.stress</listEntry>
+            <listEntry value="31">@Strings.bodybattstress</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp8h" title="@Strings.comp8h">
@@ -239,6 +251,9 @@
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="28">@Strings.wind</listEntry>
+            <listEntry value="29">@Strings.bodybattery</listEntry>
+            <listEntry value="30">@Strings.stress</listEntry>
+            <listEntry value="31">@Strings.bodybattstress</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp10h" title="@Strings.comp10h">
@@ -271,6 +286,9 @@
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="28">@Strings.wind</listEntry>
+            <listEntry value="29">@Strings.bodybattery</listEntry>
+            <listEntry value="30">@Strings.stress</listEntry>
+            <listEntry value="31">@Strings.bodybattstress</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.compbart" title="@Strings.compbart">
@@ -304,6 +322,8 @@
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="27">@Strings.ctext</listEntry>
             <listEntry value="28">@Strings.wind</listEntry>
+            <listEntry value="29">@Strings.bodybattery</listEntry>
+            <listEntry value="30">@Strings.stress</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.compbarb" title="@Strings.compbarb">
@@ -337,6 +357,8 @@
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="27">@Strings.ctext</listEntry>
             <listEntry value="28">@Strings.wind</listEntry>
+            <listEntry value="29">@Strings.bodybattery</listEntry>
+            <listEntry value="30">@Strings.stress</listEntry>
         </settingConfig>
     </setting>
     
@@ -347,6 +369,8 @@
             <listEntry value="2">@Strings.altitude</listEntry>
             <listEntry value="3">@Strings.barometer</listEntry>
             <listEntry value="4">@Strings.temperature</listEntry>
+            <listEntry value="5">@Strings.bodybattery</listEntry>
+            <listEntry value="6">@Strings.stress</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.compgraphb" title="@Strings.compgraphb">
@@ -356,6 +380,8 @@
             <listEntry value="2">@Strings.altitude</listEntry>
             <listEntry value="3">@Strings.barometer</listEntry>
             <listEntry value="4">@Strings.temperature</listEntry>
+            <listEntry value="5">@Strings.bodybattery</listEntry>
+            <listEntry value="6">@Strings.stress</listEntry>
         </settingConfig>
     </setting>
     <!-- <setting propertyKey="@Properties.baro_period" title="@Strings.baro_period">
@@ -428,9 +454,6 @@
         	<listEntry value="0">@Strings.barometer_unit_0</listEntry>
         	<listEntry value="1">@Strings.barometer_unit_1</listEntry>
         </settingConfig>
-    </setting>
-    <setting propertyKey="@Properties.openweathermap_api" title="@Strings.openweathermap_api">
-        <settingConfig type="alphaNumeric" />
     </setting>
     <setting propertyKey="@Properties.ctext_input" title="@Strings.ctext">
         <settingConfig type="alphaNumeric" />

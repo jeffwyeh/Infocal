@@ -66,7 +66,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     	
     	face_radius = centerX - (18*centerX/120).toNumber();
 
-    	current_is_analogue = Application.getApp().getProperty("use_analog");
+		current_is_analogue = Application.getApp().Properties.getValue("use_analog");
     	
         setLayout(Rez.Layouts.WatchFace(dc));
 
@@ -94,8 +94,6 @@ class HuwaiiView extends WatchUi.WatchFace {
     	last_draw_minute = -1;
     	restore_from_resume = true;
     	last_resume_mili = System.getTimer();
-    	
-		checkBackgroundRequest();
     }
 
     // Update the view
@@ -104,48 +102,6 @@ class HuwaiiView extends WatchUi.WatchFace {
     	var clockTime = System.getClockTime();
     	var current_tick = System.getTimer();
 
-//		System.println("" + current_time_duration + ", " + sleep_time + ", " + wake_time);
-		
-////		System.println("" + is_in_sleep + ", " + Application.getApp().getProperty("sleep_time_behaviour") + ", " + did_clear);
-//		var sleep_time_behaviour = Application.getApp().getProperty("sleep_time_behaviour");
-//		if (sleep_time_behaviour == 1) {
-//			var profile = UserProfile.getProfile();
-//			var current_time_duration = clockTime.hour*3600 + clockTime.min*60 + clockTime.sec;
-//	    	var sleep_time = profile.sleepTime.value();
-//	    	var wake_time = profile.wakeTime.value();
-//		
-//			var is_in_sleep = false;
-//			if (wake_time < sleep_time) {
-//				// sleep before 24h wake after 24
-//				if (current_time_duration >= sleep_time) {
-//					is_in_sleep = true;
-//				} else if (current_time_duration <= wake_time) {
-//					is_in_sleep = true;
-//				}
-//			} else {
-//				// sleep & wake after 24
-//				if ((current_time_duration >= sleep_time) && (current_time_duration <= wake_time)) {
-//					is_in_sleep = true;
-//				}
-//			}
-//			
-//			if (is_in_sleep) {
-//				if (!did_clear) {
-//					dc.setColor(0x000000, 0x000000);
-//					dc.clear();
-//					did_clear = true;
-//				}
-//				return;
-//			} else {
-//				did_clear = false;
-//			}
-//		}
-    	
-//    	System.println("1");
-    	
-//    	System.println("update");
-//    	System.println("" + clockTime.min + ":" + clockTime.sec);
-    	
     	// Calculate battery consumtion in days
     	var time_now = Time.now();
     	if (last_battery_hour == null) {
@@ -234,7 +190,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 					restore_from_resume = false;
 				}
 				// in resume time
-				checkBackgroundRequest();
 				mainDrawComponents(dc);
 				force_render_component = false;
     		} else {
@@ -243,7 +198,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 	    			// continue
 	    			last_draw_minute = current_minute;
 	    			// minute turn
-	    			checkBackgroundRequest();
 	    			mainDrawComponents(dc);
 	    		} else {
 	    			// only draw spatial
@@ -261,10 +215,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 				}
 			}
 			force_render_component = true;
-			if (clockTime.min != last_draw_minute) {
-				// Only check background web request every 1 minute
-				checkBackgroundRequest();
-			}
     		mainDrawComponents(dc);
     		last_draw_minute = clockTime.min;
     		force_render_component = false;
@@ -396,7 +346,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 		if (dialDisplay != null) {
 			dialDisplay.enableSecondHand();
 		}
-    	checkBackgroundRequest();
     }
 
     // Terminate any active timers and prepare for slow updates.
@@ -422,11 +371,4 @@ class HuwaiiView extends WatchUi.WatchFace {
 			gbar_color_1 = theme[7];
 		}
 	}
-	
-	function checkBackgroundRequest() {
-		if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
-			App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
-		}
-	}
-
 }

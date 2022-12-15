@@ -58,6 +58,14 @@ class GraphComplication extends Ui.Drawable {
 	    	if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getTemperatureHistory)) {
 		        return Toybox.SensorHistory.getTemperatureHistory({});
 		    }
+	    } else if (type==5) {
+	    	if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getBodyBatteryHistory)) {
+		        return Toybox.SensorHistory.getBodyBatteryHistory({});
+		    }
+	    } else if (type==6) {
+	    	if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getStressHistory)) {
+		        return Toybox.SensorHistory.getStressHistory({});
+		    }
 	    }
 	    return null;
 	}
@@ -86,6 +94,9 @@ class GraphComplication extends Ui.Drawable {
 				return value;
 			}
 	    }
+		 else {
+			return value;
+		 }
     }
     
     function draw(dc) {
@@ -100,33 +111,28 @@ class GraphComplication extends Ui.Drawable {
 	    	
 	    	//Calculation
 	    	var targetdatatype = get_data_type();
-	        var HistoryIter = get_data_interator(targetdatatype);
-	        
-	        if (HistoryIter == null) {
-	        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-	        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-	        	return;
-	        }
-	        
-	        var HistoryMin = HistoryIter.getMin();
-	        var HistoryMax = HistoryIter.getMax();
-	        
-	        if (HistoryMin == null || HistoryMax == null) {
-	        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-	        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-	        	return;
-	        }
-	//         else if (HistoryMin.data == null || HistoryMax.data == null) {
-	//        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-	//        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-	//        	return;
-	//        }
-	        
-	        var minMaxDiff = (HistoryMax - HistoryMin).toFloat();
-	        
-	        var xStep = graph_width;
-	        var height = graph_height;
-	        var HistoryPresent = 0;
+			var HistoryIter = get_data_interator(targetdatatype);
+			
+			if (HistoryIter == null) {
+				dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+				dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+				return;
+			}
+			
+			var HistoryMin = HistoryIter.getMin();
+			var HistoryMax = HistoryIter.getMax();
+			
+			if (HistoryMin == null || HistoryMax == null) {
+				dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+				dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+				return;
+			}
+			
+			var minMaxDiff = (HistoryMax - HistoryMin).toFloat();
+			
+			var xStep = graph_width;
+			var height = graph_height;
+			var HistoryPresent = 0;
 	
 			var HistoryNew = 0;
 			var lastyStep = 0;

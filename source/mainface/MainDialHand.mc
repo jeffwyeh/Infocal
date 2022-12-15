@@ -205,7 +205,7 @@ class MainDialHand extends Ui.Drawable {
 	    	}
 			
 			// draw date str
-			var dateText = Application.getApp().getFormatedDate();
+			var dateText = Application.getApp().getFormattedDate();
 			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 			var h3 = dc.getFontHeight(smallDigitalFont);
 			dc.drawText(target_info_x-bonus_alignment+extra_info_alignment, centerY*0.4-h3/4 + 7, smallDigitalFont, dateText, alignment);

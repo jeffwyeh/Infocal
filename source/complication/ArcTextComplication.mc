@@ -44,7 +44,7 @@ var kerning_ratios = {
 		'V' => 0.64,
 		'W' => 1.00,
 		'Y' => 0.64,
-		'°' => 0.47,
+		'°' => 0.47
     };
 
 class ArcTextComplication extends Ui.Drawable {

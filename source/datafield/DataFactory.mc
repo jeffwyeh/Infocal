@@ -43,7 +43,10 @@ enum /* FIELD_TYPES */ {
 	
 	FIELD_TYPE_AMPM_INDICATOR = 26,
 	FIELD_TYPE_CTEXT_INDICATOR,
-	FIELD_TYPE_WIND
+	FIELD_TYPE_WIND,
+	FIELD_TYPE_BODY_BATTERY,
+	FIELD_TYPE_STRESS,
+	FIELD_TYPE_BB_STRESS
 }
 
 function buildFieldObject(type) {
@@ -105,6 +108,12 @@ function buildFieldObject(type) {
 		return new CTextField(FIELD_TYPE_CTEXT_INDICATOR);
 	} else if (type==FIELD_TYPE_WIND) {
 		return new WindField(FIELD_TYPE_WIND);
+	} else if (type==FIELD_TYPE_BODY_BATTERY) {
+		return new BodyBatteryField(FIELD_TYPE_BODY_BATTERY);
+	} else if (type==FIELD_TYPE_STRESS) {
+		return new StressField(FIELD_TYPE_STRESS);
+	} else if (type==FIELD_TYPE_BB_STRESS) {
+		return new BodyBatteryStressField(FIELD_TYPE_BB_STRESS);
 	}
 	
 	return new EmptyDataField(FIELD_TYPE_EMPTY);
@@ -268,33 +277,27 @@ class WeatherField extends BaseDataField {
 	}
 	
 	function cur_icon() {
-		var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
-		if (weather_data != null) {
-			return weather_icon_mapper[weather_data["icon"]];
-		}
+		var garmin_weather = App.getApp().Weather.getCurrentConditions();
+		// TODO: Need to get the condition and map it to a valid icon.
+		// Condition definitions can be found here:
+		// https://developer.garmin.com/connect-iq/api-docs/Toybox/Weather.html
 		return null;
 	}
 	
 	function cur_label(value) {
 		// WEATHER
-		var need_minimal = App.getApp().getProperty("minimal_data");
-        var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
-        if (weather_data != null) {
-        	var settings = Sys.getDeviceSettings();
-			var temp = weather_data["temp"];
-        	var unit = "°C";
-        	if (settings.temperatureUnits == System.UNIT_STATUTE) {
+		var garmin_weather = App.getApp().Weather.getCurrentConditions();
+		if (garmin_weather != null) {
+			var settings = Sys.getDeviceSettings();
+			var unit = "°C";
+			var temp = garmin_weather.temperature;
+			if (settings.temperatureUnits == System.UNIT_STATUTE) {
 				temp = (temp * (9.0 / 5)) + 32; // Convert to Farenheit: ensure floating point division.
 				unit = "°F";
 			}
-			value = temp.format("%d") + unit;
-        
-	        var description = weather_data.get("des");
-	        if (description != null) {
-	        	return description + " " +  value;
-	        }
-        }
-        return "--";
+			return "TEMP " + temp.format("%d") + unit;
+		}
+		return "--";
 	}
 }
 
@@ -789,7 +792,7 @@ class GroupNotiField extends BaseDataField {
 	
 	function cur_label(value) {
 		var settings = Sys.getDeviceSettings();
-		var value = settings.alarmCount;
+		value = settings.alarmCount;
 		var alarm_str = Lang.format("A$1$",[value.format("%d")]);
 		value = settings.notificationCount;
 		var noti_str = Lang.format("N$1$",[value.format("%d")]);
@@ -865,8 +868,10 @@ class SunField extends BaseDataField {
 	}
 	
 	function cur_label(value) {
+		var gLocationLat = null;
+		var gLocationLng = null;
 		if (gLocationLat != null) {
-			var value = "";
+			value = "";
 			var nextSunEvent = 0;
 			var isSunriseNext = false;
 			var now = Date.info(Time.now(), Time.FORMAT_SHORT);
@@ -1097,7 +1102,7 @@ class TemparatureField extends BaseDataField {
 	
 	function cur_label(value) {
 		var need_minimal = App.getApp().getProperty("minimal_data");
-		var value = 0;
+		value = 0;
 		var settings = Sys.getDeviceSettings();
 		if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getTemperatureHistory)) {
 			var sample = SensorHistory.getTemperatureHistory(null).next();
@@ -1145,7 +1150,7 @@ class AltitudeField extends BaseDataField {
 	
 	function cur_label(value) {
 		var need_minimal = App.getApp().getProperty("minimal_data");
-		var value = 0;
+		value = 0;
 		// #67 Try to retrieve altitude from current activity, before falling back on elevation history.
 		// Note that Activity::Info.altitude is supported by CIQ 1.x, but elevation history only on select CIQ 2.x
 		// devices.
@@ -1207,7 +1212,7 @@ class AlarmField extends BaseDataField {
 	
 	function cur_label(value) {
 		var settings = Sys.getDeviceSettings();
-		var value = settings.alarmCount;
+		value = settings.alarmCount;
 		return Lang.format("ALAR $1$",[value.format("%d")]);
 	}
 }
@@ -1228,7 +1233,7 @@ class NotifyField extends BaseDataField {
 	
 	function cur_label(value) {
 		var settings = Sys.getDeviceSettings();
-		var value = settings.notificationCount;
+		value = settings.notificationCount;
 		return Lang.format("NOTIF $1$",[value.format("%d")]);
 	}
 }
@@ -1285,7 +1290,7 @@ class DateField extends BaseDataField {
 	}
 	
 	function cur_label(value) {
-		return Application.getApp().getFormatedDate();
+		return Application.getApp().getFormattedDate();
 	}
 }
 
@@ -1351,7 +1356,7 @@ class DistanceField extends BaseDataField {
 	}
 	
 	function max_label(value) {
-		var value = value/1000.0;
+		value = value/1000.0;
 		value = value/100.0; // convert cm to km
     	var valKp = App.getApp().toKValue(value);
     	return Lang.format("$1$K",[valKp]);
@@ -1690,3 +1695,173 @@ function _retrieveHeartrate() {
 // end HR stage //
 //////////////////
 
+//////////////
+// BodyBattery stage //
+//////////////
+
+class BodyBatteryField extends BaseDataField {
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+
+	function min_val() {
+    	return 0.0;
+	}
+	
+	function max_val() {
+	    return 100.0;
+	}
+	
+	function cur_val() {
+		var bodyBattery = _retrieveBodyBattery();
+		return bodyBattery.toFloat();
+	}
+	
+	function min_label(value) {
+		return value.format("%d");
+	}
+	
+	function max_label(value) {
+		return value.format("%d");
+	}
+	
+	function cur_label(value) {
+		var bodyBattery = value;
+		if (bodyBattery<=1) {
+			return "BODY --";
+		}
+		return Lang.format("BODY $1$",[bodyBattery.format("%d")]);
+	}
+	
+	function bar_data() {
+		return true;
+	}
+}
+
+function _retrieveBodyBattery() {
+	var currentBodyBattery = 0.0;
+	if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getBodyBatteryHistory)) {
+		var sample = Toybox.SensorHistory.getBodyBatteryHistory({ :period => 1 }).next();
+		if ((sample != null) && (sample.data != null)) {
+			currentBodyBattery = sample.data;
+		}
+	}
+	return currentBodyBattery.toFloat();
+}
+
+//////////////////
+// end BodyBattery stage //
+//////////////////
+
+//////////////
+// Stress stage //
+//////////////
+
+class StressField extends BaseDataField {
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+
+	function min_val() {
+    	return 0.0;
+	}
+	
+	function max_val() {
+	    return 100.0;
+	}
+	
+	function cur_val() {
+		var stress = _retrieveStress();
+		return stress.toFloat();
+	}
+	
+	function min_label(value) {
+		return value.format("%d");
+	}
+	
+	function max_label(value) {
+		return value.format("%d");
+	}
+	
+	function cur_label(value) {
+		var stress = value;
+		if (stress<=1) {
+			return "STRESS --";
+		}
+		return Lang.format("STRESS $1$",[stress.format("%d")]);
+	}
+	
+	function bar_data() {
+		return true;
+	}
+}
+
+function _retrieveStress() {
+	var currentStress = 0.0;
+	if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getStressHistory)) {
+		var sample = Toybox.SensorHistory.getStressHistory({ :period => 1 }).next();
+		if ((sample != null) && (sample.data != null)) {
+			currentStress = sample.data;
+		}
+	}
+	return currentStress.toFloat();
+}
+
+//////////////////
+// end Stress stage //
+//////////////////
+
+//////////////
+// Body Battery and Stress stage //
+//////////////
+
+class BodyBatteryStressField extends BaseDataField {
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+
+	function min_val() {
+    	return 0.0;
+	}
+	
+	function max_val() {
+	    return 100.0;
+	}
+	
+	function cur_val() {
+		return 0.0;
+	}
+	
+	function min_label(value) {
+		return value.format("%d");
+	}
+	
+	function max_label(value) {
+		return value.format("%d");
+	}
+	
+	function cur_label(value) {
+		var bodyBattery = _retrieveBodyBattery();
+		var bodyBatteryString = "--";
+		if (bodyBattery>1) {
+			bodyBatteryString = bodyBattery.format("%d");
+		}
+		var stress = _retrieveStress();
+		var stressString = "--";
+		if (stress>1) {
+			stressString = stress.format("%d");
+		}
+		return Lang.format("B $1$ S $2$",[bodyBatteryString,stressString]);
+	}
+	
+	function bar_data() {
+		return false;
+	}
+}
+
+//////////////////
+// end Body Battery and Stress stage //
+//////////////////
