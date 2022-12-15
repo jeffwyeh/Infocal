@@ -2,17 +2,17 @@
     <string id="AppName">Infocal Custom</string>
 
     <!-- Basic settings -->
-    <string id="power_save_mode">Reduce refresh rate to 1 per minute to save power</string>
+    <string id="power_save_mode">Power saving mode (refresh per minute)</string>
     <string id="white_background">Use white background</string>
 
-    <string id="always_on_second">Always-on second (for digital)</string>
-    <string id="always_on_heart">Always-on heart rate (for digital)</string>
+    <string id="always_on_second">Always-on second (digital only)</string>
+    <string id="always_on_heart">Always-on heart rate (digital only)</string>
 
-    <string id="sleep_time_behaviour">Sleep time behaviour (Currently disabled)</string>
+    <string id="sleep_time_behaviour">Sleep behaviour (currently disabled)</string>
     <string id="default_render">Default (still render screen)</string>
     <string id="no_render">Screen off to save power</string>
     
-    <string id="minimal_data">Full number instead of reduced (K)</string>
+    <string id="minimal_data">Do not abbreviate large numbers</string>
     
     <string id="force_date_english">Force date to English (prevent rectangle on unsupported chars)</string>
     
@@ -27,7 +27,7 @@
     <string id="hour_major">Hour</string>
 
     <string id="big_num_stripes">Render stripes on big number</string>
-    <string id="left_digital_info">Move right digital info to left</string>
+    <string id="left_digital_info">Move digital info to 10h</string>
     <string id="render_arc_line">Render arc line with curved complication</string>
 
     <string id="use_analog">Analog watch face</string>
@@ -58,7 +58,7 @@
     
     <string id="empty">Empty</string>
     <string id="battery">Battery</string>
-    <string id="calories">Calories total-active (Experimental)</string>
+    <string id="calories">Calories total-active (experimental)</string>
     <string id="distance">Distance (day)</string>
     <string id="distanceweek">Distance (week)</string>
     <string id="movebar">Move bar</string>
@@ -67,24 +67,25 @@
     <string id="heartrate">Heart rate</string>
     <string id="date">Date</string>
     <string id="time">Digital time</string>
-    <string id="time_secondary">Digital time (Secondary timezone)</string>
+    <string id="time_secondary">Digital time (secondary timezone)</string>
     
     <string id="notification">Notification count</string>
     <string id="alarm">Alarm count</string>
     <string id="phonestatus">Phone connection status</string>
     <string id="altitude">Altitude</string>
     <string id="temperature">Temperature (on device sensor)</string>
+    <string id="temperature_garmin">Temperature (Garmin weather)</string>
     <string id="temperature_out">Temperature</string>
-    <string id="temperature_hl">*Temperature (high/low)</string>
-    <string id="sunriseset">*Sun rise/set time</string>
+    <string id="temperature_hl">Temperature (high/low)</string>
+    <string id="sunriseset">Sun rise/set time</string>
     <string id="floorclimbed">Floor climbed</string>
     <string id="groupnoti">Group notification</string>
     <string id="barometer">Barometer</string>
     <string id="weeknum">Week of year</string>
-    <string id="weather">*Garmin weather</string>
+    <string id="weather">Weather</string>
     <string id="ampm">AM/PM indicator</string>
     <string id="ctext">Custom text</string>
-    <string id="wind">*Wind (km/h or mph)</string>
+    <string id="wind">Wind (km/h or mph)</string>
     <string id="bodybattery">Body Battery</string>
     <string id="stress">Stress</string>
     <string id="bodybattstress">Body Battery and Stress Combined</string>
@@ -135,6 +136,9 @@
     <string id="barometer_unit">Barometer Unit</string>
     <string id="barometer_unit_0">Hector Pascal (Pa)</string>
     <string id="barometer_unit_1">Inches of Mercury (inHg)</string>
+
+    <!-- Openweather Key -->
+    <string id="openweathermap_api">OpenWeatherMap API key, read FAQs section for more info</string>
 
     <!-- Theme settings -->
     <string id="theme_code">Theme color</string>

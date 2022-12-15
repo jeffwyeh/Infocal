@@ -55,4 +55,6 @@
     <property id="barometer_unit" type="number">0</property>
     
     <property id="ctext_input" type="string"></property>
+
+    <property id="openweathermap_api" type="string">8c87819e23c9df22296aa2b3b0c2417b</property>
 </properties>

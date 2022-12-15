@@ -1,5 +1,4 @@
 <settings>
-	
     <setting propertyKey="@Properties.theme_code" title="@Strings.theme_code">
         <settingConfig type="list">
         	<listEntry value="0">@Strings.theme_dark</listEntry>
@@ -222,6 +221,7 @@
             <listEntry value="16">@Strings.groupnoti</listEntry>
             <listEntry value="12">@Strings.altitude</listEntry>
             <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -257,6 +257,7 @@
             <listEntry value="16">@Strings.groupnoti</listEntry>
             <listEntry value="12">@Strings.altitude</listEntry>
             <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -292,6 +293,7 @@
             <listEntry value="16">@Strings.groupnoti</listEntry>
             <listEntry value="12">@Strings.altitude</listEntry>
             <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -327,6 +329,7 @@
             <listEntry value="16">@Strings.groupnoti</listEntry>
             <listEntry value="12">@Strings.altitude</listEntry>
             <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -362,6 +365,7 @@
             <listEntry value="16">@Strings.groupnoti</listEntry>
             <listEntry value="12">@Strings.altitude</listEntry>
             <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -397,6 +401,7 @@
             <listEntry value="16">@Strings.groupnoti</listEntry>
             <listEntry value="12">@Strings.altitude</listEntry>
             <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -432,6 +437,7 @@
             <listEntry value="16">@Strings.groupnoti</listEntry>
             <listEntry value="12">@Strings.altitude</listEntry>
             <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -467,6 +473,7 @@
             <listEntry value="16">@Strings.groupnoti</listEntry>
             <listEntry value="12">@Strings.altitude</listEntry>
             <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -576,6 +583,9 @@
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.ctext_input" title="@Strings.ctext">
+        <settingConfig type="alphaNumeric" />
+    </setting>
+    <setting propertyKey="@Properties.openweathermap_api" title="@Strings.openweathermap_api">
         <settingConfig type="alphaNumeric" />
     </setting>
 </settings>

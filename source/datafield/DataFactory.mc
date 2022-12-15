@@ -47,6 +47,7 @@ enum /* FIELD_TYPES */ {
    FIELD_TYPE_BODY_BATTERY,
    FIELD_TYPE_STRESS,
    FIELD_TYPE_BB_STRESS,
+   FIELD_TYPE_TEMPERATURE_GARMIN,
 }
 
 function buildFieldObject(type) {
@@ -114,6 +115,8 @@ function buildFieldObject(type) {
       return new StressField(FIELD_TYPE_STRESS);
    } else if (type == FIELD_TYPE_BB_STRESS) {
       return new BodyBatteryStressField(FIELD_TYPE_BB_STRESS);
+   } else if (type == FIELD_TYPE_TEMPERATURE_GARMIN) {
+      return new TemparatureGarminField(FIELD_TYPE_TEMPERATURE_GARMIN);
    }
 
    return new EmptyDataField(FIELD_TYPE_EMPTY);
@@ -252,7 +255,6 @@ class CTextField extends BaseDataField {
 /* WEATHER */
 class WeatherField extends BaseDataField {
    var weather_icon_mapper;
-
    function initialize(id) {
       BaseDataField.initialize(id);
 
@@ -280,24 +282,31 @@ class WeatherField extends BaseDataField {
    }
 
    function cur_icon() {
-      var garmin_weather = App.getApp().Weather.getCurrentConditions();
-      // TODO: Need to get the condition and map it to a valid icon.
-      // Condition definitions can be found here:
-      // https://developer.garmin.com/connect-iq/api-docs/Toybox/Weather.html
+      var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
+      if (weather_data != null) {
+         return weather_icon_mapper[weather_data["icon"]];
+      }
       return null;
    }
 
    function cur_label(value) {
-      var garmin_weather = App.getApp().Weather.getCurrentConditions();
-      if (garmin_weather != null) {
+      // WEATHER
+      var need_minimal = App.getApp().getProperty("minimal_data");
+      var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
+      if (weather_data != null) {
          var settings = Sys.getDeviceSettings();
+         var temp = weather_data["temp"];
          var unit = "°C";
-         var temp = garmin_weather.temperature;
          if (settings.temperatureUnits == System.UNIT_STATUTE) {
             temp = temp * (9.0 / 5) + 32; // Convert to Farenheit: ensure floating point division.
             unit = "°F";
          }
-         return "TEMP " + temp.format("%d") + unit;
+         value = temp.format("%d") + unit;
+
+         var description = weather_data.get("des");
+         if (description != null) {
+            return description + " " + value;
+         }
       }
       return "--";
    }
@@ -363,6 +372,41 @@ class TemparatureHLField extends BaseDataField {
 
 /* TEMPERATURE OUTSIDE */
 class TemparatureOutField extends BaseDataField {
+   function initialize(id) {
+      BaseDataField.initialize(id);
+   }
+
+   function cur_label(value) {
+      // WEATHER
+      var need_minimal = App.getApp().getProperty("minimal_data");
+      var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
+      if (weather_data != null) {
+         var settings = Sys.getDeviceSettings();
+         var temp = weather_data["temp"];
+         var unit = "°C";
+         if (settings.temperatureUnits == System.UNIT_STATUTE) {
+            temp = temp * (9.0 / 5) + 32; // Convert to Farenheit: ensure floating point division.
+            unit = "°F";
+         }
+         value = temp.format("%d") + unit;
+
+         if (need_minimal) {
+            return value;
+         } else {
+            return Lang.format("TEMP $1$", [value]);
+         }
+      } else {
+         if (need_minimal) {
+            return "--";
+         } else {
+            return "TEMP --";
+         }
+      }
+   }
+}
+
+/* TEMPERATURE GARMIN */
+class TemparatureGarminField extends BaseDataField {
    function initialize(id) {
       BaseDataField.initialize(id);
    }
@@ -799,8 +843,6 @@ class SunField extends BaseDataField {
    }
 
    function cur_label(value) {
-      var gLocationLat = null;
-      var gLocationLng = null;
       if (gLocationLat != null) {
          value = "";
          var nextSunEvent = 0;

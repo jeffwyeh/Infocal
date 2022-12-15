@@ -94,6 +94,7 @@ class HuwaiiView extends WatchUi.WatchFace {
       last_draw_minute = -1;
       restore_from_resume = true;
       last_resume_mili = System.getTimer();
+      checkBackgroundRequest();
    }
 
    // Update the view
@@ -201,6 +202,7 @@ class HuwaiiView extends WatchUi.WatchFace {
                restore_from_resume = false;
             }
             // in resume time
+            checkBackgroundRequest();
             mainDrawComponents(dc);
             force_render_component = false;
          } else {
@@ -209,6 +211,7 @@ class HuwaiiView extends WatchUi.WatchFace {
                // continue
                last_draw_minute = current_minute;
                // minute turn
+               checkBackgroundRequest();
                mainDrawComponents(dc);
             } else {
                // only draw spatial
@@ -226,6 +229,10 @@ class HuwaiiView extends WatchUi.WatchFace {
             }
          }
          force_render_component = true;
+         if (clockTime.min != last_draw_minute) {
+            // Only check background web request every 1 minute
+            checkBackgroundRequest();
+         }
          mainDrawComponents(dc);
          last_draw_minute = clockTime.min;
          force_render_component = false;
@@ -367,6 +374,7 @@ class HuwaiiView extends WatchUi.WatchFace {
       if (dialDisplay != null) {
          dialDisplay.enableSecondHand();
       }
+      checkBackgroundRequest();
    }
 
    // Terminate any active timers and prepare for slow updates.
@@ -381,20 +389,34 @@ class HuwaiiView extends WatchUi.WatchFace {
       var theme_code = Application.getApp().Properties.getValue("theme_code");
       if (gtheme != theme_code || theme_code == 18) {
          if (theme_code == 18) {
-            var background_color = Application.getApp().Properties.getValue("background_color");
-            var text_color = Application.getApp().Properties.getValue("text_color");
-            var accent_color = Application.getApp().Properties.getValue("accent_color");
-            var accent_secondary_color = Application.getApp().Properties.getValue("accent_secondary_color");
-            var indicator_color = Application.getApp().Properties.getValue("indicator_color");
-            var bar_graph_color_top = Application.getApp().Properties.getValue("bar_graph_color_top");
-            var bar_graph_color_bottom = Application.getApp().Properties.getValue("bar_graph_color_bottom");
-            if (background_color != gbackground_color ||
-                text_color != gmain_color ||
-                accent_color != gsecondary_color ||
-                accent_secondary_color != gbar_color_back ||
-                indicator_color != gbar_color_indi ||
-                bar_graph_color_top != gbar_color_0 ||
-                bar_graph_color_bottom != gbar_color_1) {
+            var background_color =
+               Application.getApp().Properties.getValue("background_color");
+            var text_color =
+               Application.getApp().Properties.getValue("text_color");
+            var accent_color =
+               Application.getApp().Properties.getValue("accent_color");
+            var accent_secondary_color =
+               Application.getApp().Properties.getValue(
+                  "accent_secondary_color"
+               );
+            var indicator_color =
+               Application.getApp().Properties.getValue("indicator_color");
+            var bar_graph_color_top = Application.getApp().Properties.getValue(
+               "bar_graph_color_top"
+            );
+            var bar_graph_color_bottom =
+               Application.getApp().Properties.getValue(
+                  "bar_graph_color_bottom"
+               );
+            if (
+               background_color != gbackground_color ||
+               text_color != gmain_color ||
+               accent_color != gsecondary_color ||
+               accent_secondary_color != gbar_color_back ||
+               indicator_color != gbar_color_indi ||
+               bar_graph_color_top != gbar_color_0 ||
+               bar_graph_color_bottom != gbar_color_1
+            ) {
                // background
                gbackground_color = background_color;
                // main text
@@ -411,9 +433,11 @@ class HuwaiiView extends WatchUi.WatchFace {
                gbar_color_0 = bar_graph_color_top;
                // bar foreground/graph (bottom)
                gbar_color_1 = bar_graph_color_bottom;
-            } 
+            }
          } else {
-            var theme_pallete = WatchUi.loadResource(Rez.JsonData.theme_pallete);
+            var theme_pallete = WatchUi.loadResource(
+               Rez.JsonData.theme_pallete
+            );
             var theme = theme_pallete["" + theme_code];
             // background
             gbackground_color = theme[0];
@@ -434,6 +458,13 @@ class HuwaiiView extends WatchUi.WatchFace {
          }
          // set the global theme
          gtheme = theme_code;
+      }
+   }
+
+   function checkBackgroundRequest() {
+      if (HuwaiiApp has :checkPendingWebRequests) {
+         // checkPendingWebRequests() can be excluded to save memory.
+         App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
       }
    }
 }
