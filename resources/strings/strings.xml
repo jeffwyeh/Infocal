@@ -175,12 +175,18 @@
     <string id="white">White</string>
     <string id="red">Red</string>
     <string id="red_dark">Dark Red</string>
+    <string id="pink">Pink</string>
+    <string id="cyan">Cyan</string>
     <string id="blue">Blue</string>
+    <string id="blue_pale">Pale Blue</string>
     <string id="blue_dark">Dark Blue</string>
     <string id="green">Green</string>
+    <string id="green_lime">Lime Green</string>
     <string id="green_dark">Dark Green</string>
+    <string id="green_olive">Olive Green</string>
     <string id="yellow">Yellow</string>
-    <string id="yellow_dark">Dark Yellow</string>
+    <string id="orange">Orange</string>
+    <string id="brown">Brown</string>
     <string id="gray">Gray</string>
     <string id="gray_dark">Dark Gray</string>
 </strings>

@@ -27,12 +27,18 @@
         	<listEntry value="16777215">@Strings.white</listEntry>
         	<listEntry value="16711680">@Strings.red</listEntry>
         	<listEntry value="5570560">@Strings.red_dark</listEntry>
+        	<listEntry value="16711765">@Strings.pink</listEntry>
+        	<listEntry value="65535">@Strings.cyan</listEntry>
         	<listEntry value="255">@Strings.blue</listEntry>
+        	<listEntry value="43775">@Strings.blue_pale</listEntry>
         	<listEntry value="85">@Strings.blue_dark</listEntry>
-        	<listEntry value="65280">@Strings.green</listEntry>
+        	<listEntry value="5614080">@Strings.green</listEntry>
+        	<listEntry value="65280">@Strings.green_lime</listEntry>
         	<listEntry value="21760">@Strings.green_dark</listEntry>
+        	<listEntry value="5592320">@Strings.green_olive</listEntry>
         	<listEntry value="16776960">@Strings.yellow</listEntry>
-        	<listEntry value="5592320">@Strings.yellow_dark</listEntry>
+        	<listEntry value="16733440">@Strings.orange</listEntry>
+        	<listEntry value="11162880">@Strings.brown</listEntry>
         	<listEntry value="11184810">@Strings.gray</listEntry>
         	<listEntry value="5592405">@Strings.gray_dark</listEntry>
         </settingConfig>
@@ -44,12 +50,18 @@
         	<listEntry value="16777215">@Strings.white</listEntry>
         	<listEntry value="16711680">@Strings.red</listEntry>
         	<listEntry value="5570560">@Strings.red_dark</listEntry>
+        	<listEntry value="16711765">@Strings.pink</listEntry>
+        	<listEntry value="65535">@Strings.cyan</listEntry>
         	<listEntry value="255">@Strings.blue</listEntry>
+        	<listEntry value="43775">@Strings.blue_pale</listEntry>
         	<listEntry value="85">@Strings.blue_dark</listEntry>
-        	<listEntry value="65280">@Strings.green</listEntry>
+        	<listEntry value="5614080">@Strings.green</listEntry>
+        	<listEntry value="65280">@Strings.green_lime</listEntry>
         	<listEntry value="21760">@Strings.green_dark</listEntry>
+        	<listEntry value="5592320">@Strings.green_olive</listEntry>
         	<listEntry value="16776960">@Strings.yellow</listEntry>
-        	<listEntry value="5592320">@Strings.yellow_dark</listEntry>
+        	<listEntry value="16733440">@Strings.orange</listEntry>
+        	<listEntry value="11162880">@Strings.brown</listEntry>
         	<listEntry value="11184810">@Strings.gray</listEntry>
         	<listEntry value="5592405">@Strings.gray_dark</listEntry>
         </settingConfig>
@@ -61,12 +73,18 @@
         	<listEntry value="16777215">@Strings.white</listEntry>
         	<listEntry value="16711680">@Strings.red</listEntry>
         	<listEntry value="5570560">@Strings.red_dark</listEntry>
+        	<listEntry value="16711765">@Strings.pink</listEntry>
+        	<listEntry value="65535">@Strings.cyan</listEntry>
         	<listEntry value="255">@Strings.blue</listEntry>
+        	<listEntry value="43775">@Strings.blue_pale</listEntry>
         	<listEntry value="85">@Strings.blue_dark</listEntry>
-        	<listEntry value="65280">@Strings.green</listEntry>
+        	<listEntry value="5614080">@Strings.green</listEntry>
+        	<listEntry value="65280">@Strings.green_lime</listEntry>
         	<listEntry value="21760">@Strings.green_dark</listEntry>
+        	<listEntry value="5592320">@Strings.green_olive</listEntry>
         	<listEntry value="16776960">@Strings.yellow</listEntry>
-        	<listEntry value="5592320">@Strings.yellow_dark</listEntry>
+        	<listEntry value="16733440">@Strings.orange</listEntry>
+        	<listEntry value="11162880">@Strings.brown</listEntry>
         	<listEntry value="11184810">@Strings.gray</listEntry>
         	<listEntry value="5592405">@Strings.gray_dark</listEntry>
         </settingConfig>
@@ -78,12 +96,18 @@
         	<listEntry value="16777215">@Strings.white</listEntry>
         	<listEntry value="16711680">@Strings.red</listEntry>
         	<listEntry value="5570560">@Strings.red_dark</listEntry>
+        	<listEntry value="16711765">@Strings.pink</listEntry>
+        	<listEntry value="65535">@Strings.cyan</listEntry>
         	<listEntry value="255">@Strings.blue</listEntry>
+        	<listEntry value="43775">@Strings.blue_pale</listEntry>
         	<listEntry value="85">@Strings.blue_dark</listEntry>
-        	<listEntry value="65280">@Strings.green</listEntry>
+        	<listEntry value="5614080">@Strings.green</listEntry>
+        	<listEntry value="65280">@Strings.green_lime</listEntry>
         	<listEntry value="21760">@Strings.green_dark</listEntry>
+        	<listEntry value="5592320">@Strings.green_olive</listEntry>
         	<listEntry value="16776960">@Strings.yellow</listEntry>
-        	<listEntry value="5592320">@Strings.yellow_dark</listEntry>
+        	<listEntry value="16733440">@Strings.orange</listEntry>
+        	<listEntry value="11162880">@Strings.brown</listEntry>
         	<listEntry value="11184810">@Strings.gray</listEntry>
         	<listEntry value="5592405">@Strings.gray_dark</listEntry>
         </settingConfig>
@@ -95,12 +119,18 @@
         	<listEntry value="16777215">@Strings.white</listEntry>
         	<listEntry value="16711680">@Strings.red</listEntry>
         	<listEntry value="5570560">@Strings.red_dark</listEntry>
+        	<listEntry value="16711765">@Strings.pink</listEntry>
+        	<listEntry value="65535">@Strings.cyan</listEntry>
         	<listEntry value="255">@Strings.blue</listEntry>
+        	<listEntry value="43775">@Strings.blue_pale</listEntry>
         	<listEntry value="85">@Strings.blue_dark</listEntry>
-        	<listEntry value="65280">@Strings.green</listEntry>
+        	<listEntry value="5614080">@Strings.green</listEntry>
+        	<listEntry value="65280">@Strings.green_lime</listEntry>
         	<listEntry value="21760">@Strings.green_dark</listEntry>
+        	<listEntry value="5592320">@Strings.green_olive</listEntry>
         	<listEntry value="16776960">@Strings.yellow</listEntry>
-        	<listEntry value="5592320">@Strings.yellow_dark</listEntry>
+        	<listEntry value="16733440">@Strings.orange</listEntry>
+        	<listEntry value="11162880">@Strings.brown</listEntry>
         	<listEntry value="11184810">@Strings.gray</listEntry>
         	<listEntry value="5592405">@Strings.gray_dark</listEntry>
         </settingConfig>
@@ -112,12 +142,18 @@
         	<listEntry value="16777215">@Strings.white</listEntry>
         	<listEntry value="16711680">@Strings.red</listEntry>
         	<listEntry value="5570560">@Strings.red_dark</listEntry>
+        	<listEntry value="16711765">@Strings.pink</listEntry>
+        	<listEntry value="65535">@Strings.cyan</listEntry>
         	<listEntry value="255">@Strings.blue</listEntry>
+        	<listEntry value="43775">@Strings.blue_pale</listEntry>
         	<listEntry value="85">@Strings.blue_dark</listEntry>
-        	<listEntry value="65280">@Strings.green</listEntry>
+        	<listEntry value="5614080">@Strings.green</listEntry>
+        	<listEntry value="65280">@Strings.green_lime</listEntry>
         	<listEntry value="21760">@Strings.green_dark</listEntry>
+        	<listEntry value="5592320">@Strings.green_olive</listEntry>
         	<listEntry value="16776960">@Strings.yellow</listEntry>
-        	<listEntry value="5592320">@Strings.yellow_dark</listEntry>
+        	<listEntry value="16733440">@Strings.orange</listEntry>
+        	<listEntry value="11162880">@Strings.brown</listEntry>
         	<listEntry value="11184810">@Strings.gray</listEntry>
         	<listEntry value="5592405">@Strings.gray_dark</listEntry>
         </settingConfig>
@@ -129,12 +165,18 @@
         	<listEntry value="16777215">@Strings.white</listEntry>
         	<listEntry value="16711680">@Strings.red</listEntry>
         	<listEntry value="5570560">@Strings.red_dark</listEntry>
+        	<listEntry value="16711765">@Strings.pink</listEntry>
+        	<listEntry value="65535">@Strings.cyan</listEntry>
         	<listEntry value="255">@Strings.blue</listEntry>
+        	<listEntry value="43775">@Strings.blue_pale</listEntry>
         	<listEntry value="85">@Strings.blue_dark</listEntry>
-        	<listEntry value="65280">@Strings.green</listEntry>
+        	<listEntry value="5614080">@Strings.green</listEntry>
+        	<listEntry value="65280">@Strings.green_lime</listEntry>
         	<listEntry value="21760">@Strings.green_dark</listEntry>
+        	<listEntry value="5592320">@Strings.green_olive</listEntry>
         	<listEntry value="16776960">@Strings.yellow</listEntry>
-        	<listEntry value="5592320">@Strings.yellow_dark</listEntry>
+        	<listEntry value="16733440">@Strings.orange</listEntry>
+        	<listEntry value="11162880">@Strings.brown</listEntry>
         	<listEntry value="11184810">@Strings.gray</listEntry>
         	<listEntry value="5592405">@Strings.gray_dark</listEntry>
         </settingConfig>
