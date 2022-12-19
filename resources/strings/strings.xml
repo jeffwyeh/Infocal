@@ -166,8 +166,8 @@
     <string id="background_color">Background color</string>
     <string id="text_color">Text color</string>
     <string id="accent_color">Accent color</string>
-    <string id="accent_secondary_color">Secondary Accent color</string>
-    <string id="indicator_color">Move bar indicator color</string>
+    <string id="bar_background_color">Bar background color</string>
+    <string id="indicator_ticks_color">Bar indicator and ticks color</string>
     <string id="bar_graph_color_top">Top bar/graph color</string>
     <string id="bar_graph_color_bottom">Bottom bar/graph color</string>
 

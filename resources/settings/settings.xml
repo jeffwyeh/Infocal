@@ -90,7 +90,7 @@
         </settingConfig>
     </setting>
 
-    <setting propertyKey="@Properties.accent_secondary_color" title="@Strings.accent_secondary_color">
+    <setting propertyKey="@Properties.bar_background_color" title="@Strings.bar_background_color">
         <settingConfig type="list">
         	<listEntry value="0">@Strings.black</listEntry>
         	<listEntry value="16777215">@Strings.white</listEntry>
@@ -113,7 +113,7 @@
         </settingConfig>
     </setting>
 
-    <setting propertyKey="@Properties.indicator_color" title="@Strings.indicator_color">
+    <setting propertyKey="@Properties.indicator_ticks_color" title="@Strings.indicator_ticks_color">
         <settingConfig type="list">
         	<listEntry value="0">@Strings.black</listEntry>
         	<listEntry value="16777215">@Strings.white</listEntry>

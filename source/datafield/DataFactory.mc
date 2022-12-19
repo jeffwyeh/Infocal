@@ -860,7 +860,6 @@ class SunField extends BaseDataField {
             null,
             /* tomorrow */ false
          );
-         //Sys.println(sunTimes);
 
          // If sunrise/sunset happens today.
          var sunriseSunsetToday = sunTimes[0] != null && sunTimes[1] != null;
@@ -964,11 +963,9 @@ class SunField extends BaseDataField {
 
       // Number of days since Jan 1st, 2000 12:00.
       var n = jDate - 2451545.0d + 0.0008d;
-      //Sys.println("n " + n);
 
       // Mean solar noon.
       var jStar = n - lng / 360.0d;
-      //Sys.println("jStar " + jStar);
 
       // Solar mean anomaly.
       var M = 357.5291d + 0.98560028d * jStar;
@@ -976,14 +973,12 @@ class SunField extends BaseDataField {
       var MFrac = M - MFloor;
       M = MFloor.toLong() % 360;
       M += MFrac;
-      //Sys.println("M " + M);
 
       // Equation of the centre.
       var C =
          1.9148d * Math.sin(M * rad) +
          0.02d * Math.sin(2 * M * rad) +
          0.0003d * Math.sin(3 * M * rad);
-      //Sys.println("C " + C);
 
       // Ecliptic longitude.
       var lambda = M + C + 180 + 102.9372d;
@@ -991,7 +986,6 @@ class SunField extends BaseDataField {
       var lambdaFrac = lambda - lambdaFloor;
       lambda = lambdaFloor.toLong() % 360;
       lambda += lambdaFrac;
-      //Sys.println("lambda " + lambda);
 
       // Solar transit.
       var jTransit =
@@ -999,17 +993,14 @@ class SunField extends BaseDataField {
          jStar +
          0.0053d * Math.sin(M * rad) -
          0.0069d * Math.sin(2 * lambda * rad);
-      //Sys.println("jTransit " + jTransit);
 
       // Declination of the sun.
       var delta = Math.asin(Math.sin(lambda * rad) * Math.sin(23.44d * rad));
-      //Sys.println("delta " + delta);
 
       // Hour angle.
       var cosOmega =
          (Math.sin(-0.83d * rad) - Math.sin(lat * rad) * Math.sin(delta)) /
          (Math.cos(lat * rad) * Math.cos(delta));
-      //Sys.println("cosOmega " + cosOmega);
 
       // Sun never rises.
       if (cosOmega > 1) {
@@ -1482,41 +1473,36 @@ class BatteryField extends BaseDataField {
 
    function cur_label(value) {
       var battery_format = App.getApp().getProperty("battery_format");
-      var hour_consumtion = last_hour_consumtion;
-      if (hour_consumtion <= 0) {
-         var consumtion_history =
-            App.getApp().getProperty("consumtion_history");
-         if (consumtion_history != null) {
+      var hour_consumption = last_hour_consumption;
+      if (hour_consumption <= 0) {
+         var consumption_history =
+            App.getApp().getProperty("consumption_history");
+         if (consumption_history != null) {
             var total = 0.0;
-            for (var i = 0; i < consumtion_history.size(); i++) {
+            for (var i = 0; i < consumption_history.size(); i++) {
                // Code to do in a loop
-               total += consumtion_history[i];
+               total += consumption_history[i];
             }
-            hour_consumtion = total / consumtion_history.size();
-            //				System.println("hour_consumtion");
-            //				System.println(hour_consumtion);
+            hour_consumption = total / consumption_history.size();
          } else {
-            var hour_consumtion_saved = App.getApp().getProperty(
-               "last_hour_consumtion"
+            var hour_consumption_saved = App.getApp().getProperty(
+               "last_hour_consumption"
             );
-            if (hour_consumtion_saved != null) {
-               hour_consumtion = hour_consumtion_saved;
+            if (hour_consumption_saved != null) {
+               hour_consumption = hour_consumption_saved;
             }
          }
       }
-      hour_consumtion = hour_consumtion.toFloat();
+      hour_consumption = hour_consumption.toFloat();
 
-      //		System.println(hour_consumtion);
-
-      if (battery_format == 0 || hour_consumtion == -1) {
+      if (battery_format == 0 || hour_consumption == -1) {
          // show percent
          return Lang.format("BAT $1$%", [Math.round(value).format("%d")]);
       } else {
-         // System.println("" + value + " " + last_hour_consumtion);
-         if (hour_consumtion == 0) {
+         if (hour_consumption == 0) {
             return Lang.format("$1$ DAYS", [99]);
          }
-         var hour_left = value / (hour_consumtion * 1.0);
+         var hour_left = value / (hour_consumption * 1.0);
          var day_left = hour_left / 24.0;
          return Lang.format("$1$ DAYS", [day_left.format("%0.1f")]);
       }

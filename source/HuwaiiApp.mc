@@ -68,16 +68,10 @@ class HuwaiiApp extends Application.AppBase {
    }
 
    // onStart() is called on application start up
-   function onStart(state) {
-      //    	// var clockTime = Sys.getClockTime();
-      //    	// Sys.println("" + clockTime.min + ":" + clockTime.sec);
-   }
+   function onStart(state) {}
 
    // onStop() is called when your application is exiting
-   function onStop(state) {
-      //    	// var clockTime = Sys.getClockTime();
-      //    	// Sys.println("" + clockTime.min + ":" + clockTime.sec);
-   }
+   function onStop(state) {}
 
    // Return the initial view of your application here
    function getInitialView() {
@@ -109,7 +103,7 @@ class HuwaiiApp extends Application.AppBase {
       // If current location available from current activity, save it in case it goes "stale" and can not longer be retrieved.
       var location = Activity.getActivityInfo().currentLocation;
       if (location) {
-         // Sys.println("Saving location");
+         // Save location to globals
          location = location.toDegrees(); // Array of Doubles.
          gLocationLat = location[0].toFloat();
          gLocationLng = location[1].toFloat();
@@ -129,8 +123,6 @@ class HuwaiiApp extends Application.AppBase {
             gLocationLng = lng;
          }
       }
-
-      Sys.println("Check check: " + gLocationLat + ", " + gLocationLng);
 
       if (!(Sys has :ServiceDelegate)) {
          return;
@@ -198,7 +190,6 @@ class HuwaiiApp extends Application.AppBase {
 
       var pendingWebRequests = getProperty("PendingWebRequests");
       if (pendingWebRequests == null) {
-         //			//Sys.println("onBackgroundData() called with no pending web requests!");
          pendingWebRequests = {};
       }
 

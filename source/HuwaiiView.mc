@@ -34,7 +34,7 @@ var gtheme = -1;
 var force_render_component = false;
 
 var last_battery_percent = -1;
-var last_hour_consumtion = -1;
+var last_hour_consumption = -1;
 
 class HuwaiiView extends WatchUi.WatchFace {
    var last_draw_minute = -1;
@@ -75,7 +75,6 @@ class HuwaiiView extends WatchUi.WatchFace {
          // create a buffer to draw to
          // so it can be pasted straight to
          // the screen instead of redrawing
-         System.println("device has clearbufferbug");
          if (Toybox.Graphics has :BufferedBitmap) {
             screenbuffer = new Graphics.BufferedBitmap({
                :width => dc.getWidth(),
@@ -102,51 +101,45 @@ class HuwaiiView extends WatchUi.WatchFace {
       var clockTime = System.getClockTime();
       var current_tick = System.getTimer();
 
-      // Calculate battery consumtion in days
+      // Calculate battery consumption in days
       var time_now = Time.now();
       if (last_battery_hour == null) {
          last_battery_hour = time_now;
          last_battery_percent = System.getSystemStats().battery;
-         last_hour_consumtion = -1;
+         last_hour_consumption = -1;
       } else if (time_now.compare(last_battery_hour) >= 60 * 60) {
          // 60 min
          last_battery_hour = time_now;
          var current_battery = System.getSystemStats().battery;
-         last_hour_consumtion = last_battery_percent - current_battery;
-         if (last_hour_consumtion < 0) {
-            last_hour_consumtion = -1;
+         last_hour_consumption = last_battery_percent - current_battery;
+         if (last_hour_consumption < 0) {
+            last_hour_consumption = -1;
          }
-         if (last_hour_consumtion > 0) {
+         if (last_hour_consumption > 0) {
             App.getApp().setProperty(
-               "last_hour_consumtion",
-               last_hour_consumtion
+               "last_hour_consumption",
+               last_hour_consumption
             );
 
-            var consumtion_history =
-               App.getApp().getProperty("consumtion_history");
-            if (consumtion_history == null) {
-               App.getApp().setProperty("consumtion_history", [
-                  last_hour_consumtion,
+            var consumption_history =
+               App.getApp().getProperty("consumption_history");
+            if (consumption_history == null) {
+               App.getApp().setProperty("consumption_history", [
+                  last_hour_consumption,
                ]);
             } else {
-               //					System.println(consumtion_history);
-               //					System.println(last_hour_consumtion);
-               consumtion_history.add(last_hour_consumtion);
-               if (consumtion_history.size() > 24) {
-                  var object0 = consumtion_history[0];
-                  consumtion_history.remove(object0);
+               consumption_history.add(last_hour_consumption);
+               if (consumption_history.size() > 24) {
+                  var object0 = consumption_history[0];
+                  consumption_history.remove(object0);
                }
                App.getApp().setProperty(
-                  "consumtion_history",
-                  consumtion_history
+                  "consumption_history",
+                  consumption_history
                );
             }
-            //				System.println("consumtion_history_set");
-            //				System.println(App.getApp().getProperty("consumtion_history"));
          }
          last_battery_percent = current_battery;
-      } else {
-         //System.println(time_now.compare(last_battery_hour));
       }
 
       // if this device has the clear dc bug
@@ -363,9 +356,6 @@ class HuwaiiView extends WatchUi.WatchFace {
    // state of this View here. This includes freeing resources from
    // memory.
    function onHide() {
-      // var clockTime = System.getClockTime();
-      // System.println("hide");
-      // System.println("" + clockTime.min + ":" + clockTime.sec);
    }
 
    // The user has just looked at their watch. Timers and animations may be started here.
@@ -395,12 +385,12 @@ class HuwaiiView extends WatchUi.WatchFace {
                Application.getApp().Properties.getValue("text_color");
             var accent_color =
                Application.getApp().Properties.getValue("accent_color");
-            var accent_secondary_color =
+            var bar_background_color =
                Application.getApp().Properties.getValue(
-                  "accent_secondary_color"
+                  "bar_background_color"
                );
-            var indicator_color =
-               Application.getApp().Properties.getValue("indicator_color");
+            var indicator_ticks_color =
+               Application.getApp().Properties.getValue("indicator_ticks_color");
             var bar_graph_color_top = Application.getApp().Properties.getValue(
                "bar_graph_color_top"
             );
@@ -412,8 +402,8 @@ class HuwaiiView extends WatchUi.WatchFace {
                background_color != gbackground_color ||
                text_color != gmain_color ||
                accent_color != gsecondary_color ||
-               accent_secondary_color != gbar_color_back ||
-               indicator_color != gbar_color_indi ||
+               bar_background_color != gbar_color_back ||
+               indicator_ticks_color != gbar_color_indi ||
                bar_graph_color_top != gbar_color_0 ||
                bar_graph_color_bottom != gbar_color_1
             ) {
@@ -424,11 +414,11 @@ class HuwaiiView extends WatchUi.WatchFace {
                // accent (dividers between complications)
                gsecondary_color = accent_color;
                // ticks
-               garc_color = indicator_color;
+               garc_color = indicator_ticks_color;
                // indicator pointing at the bar
-               gbar_color_indi = indicator_color;
+               gbar_color_indi = indicator_ticks_color;
                // bar background
-               gbar_color_back = accent_secondary_color;
+               gbar_color_back = bar_background_color;
                // bar foreground/graph (top)
                gbar_color_0 = bar_graph_color_top;
                // bar foreground/graph (bottom)
