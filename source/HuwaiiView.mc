@@ -39,7 +39,7 @@ var last_hour_consumption = -1;
 class HuwaiiView extends WatchUi.WatchFace {
    var last_draw_minute = -1;
    var restore_from_resume = false;
-   var last_resume_mili = 0;
+   var last_resume_milli = 0;
 
    var last_battery_hour = null;
 
@@ -66,7 +66,7 @@ class HuwaiiView extends WatchUi.WatchFace {
       face_radius = centerX - ((18 * centerX) / 120).toNumber();
 
       current_is_analogue =
-         Application.getApp().Properties.getValue("use_analog");
+         Application.getApp().getProperty("use_analog");
 
       setLayout(Rez.Layouts.WatchFace(dc));
 
@@ -92,7 +92,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 
       last_draw_minute = -1;
       restore_from_resume = true;
-      last_resume_mili = System.getTimer();
+      last_resume_milli = System.getTimer();
       checkBackgroundRequest();
    }
 
@@ -159,7 +159,6 @@ class HuwaiiView extends WatchUi.WatchFace {
          }
          // copy buffer to screen
          dc.drawBitmap(0, 0, screenbuffer);
-         return;
       }
 
       var always_on_style = Application.getApp().getProperty("always_on_style");
@@ -188,10 +187,10 @@ class HuwaiiView extends WatchUi.WatchFace {
       force_render_component = true;
       if (Application.getApp().getProperty("power_save_mode")) {
          if (restore_from_resume) {
-            var current_mili = current_tick;
+            var current_milli = current_tick;
             force_render_component = true;
             // will allow watch face to refresh in 5s when resumed (`onShow()` called)
-            if (current_mili - last_resume_mili > 5000) {
+            if (current_milli - last_resume_milli > 5000) {
                restore_from_resume = false;
             }
             // in resume time
@@ -206,18 +205,15 @@ class HuwaiiView extends WatchUi.WatchFace {
                // minute turn
                checkBackgroundRequest();
                mainDrawComponents(dc);
-            } else {
-               // only draw spatial
-               //	    			return;
             }
          }
       } else {
          // normal power mode
          if (restore_from_resume) {
-            var current_mili = current_tick;
+            var current_milli = current_tick;
             force_render_component = true;
             // will allow watch face to refresh in 5s when resumed (`onShow()` called)
-            if (current_mili - last_resume_mili > 5000) {
+            if (current_milli - last_resume_milli > 5000) {
                restore_from_resume = false;
             }
          }
@@ -376,26 +372,26 @@ class HuwaiiView extends WatchUi.WatchFace {
    }
 
    function checkTheme() {
-      var theme_code = Application.getApp().Properties.getValue("theme_code");
+      var theme_code = Application.getApp().getProperty("theme_code");
       if (gtheme != theme_code || theme_code == 18) {
          if (theme_code == 18) {
             var background_color =
-               Application.getApp().Properties.getValue("background_color");
+               Application.getApp().getProperty("background_color");
             var text_color =
-               Application.getApp().Properties.getValue("text_color");
+               Application.getApp().getProperty("text_color");
             var accent_color =
-               Application.getApp().Properties.getValue("accent_color");
+               Application.getApp().getProperty("accent_color");
             var bar_background_color =
-               Application.getApp().Properties.getValue(
+               Application.getApp().getProperty(
                   "bar_background_color"
                );
             var indicator_ticks_color =
-               Application.getApp().Properties.getValue("indicator_ticks_color");
-            var bar_graph_color_top = Application.getApp().Properties.getValue(
+               Application.getApp().getProperty("indicator_ticks_color");
+            var bar_graph_color_top = Application.getApp().getProperty(
                "bar_graph_color_top"
             );
             var bar_graph_color_bottom =
-               Application.getApp().Properties.getValue(
+               Application.getApp().getProperty(
                   "bar_graph_color_bottom"
                );
             if (

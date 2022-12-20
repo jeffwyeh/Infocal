@@ -25,7 +25,7 @@
     <property id="force_date_english" type="boolean">true</property>
     <property id="big_number_type" type="number">0</property>
 
-    <property id="ticks_style" type="number">0</property>
+    <property id="ticks_style" type="number">2</property>
     <property id="render_arc_line" type="boolean">true</property>
     
     <property id="comp12h" type="number">1</property>

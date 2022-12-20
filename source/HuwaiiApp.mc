@@ -267,7 +267,7 @@ class HuwaiiApp extends Application.AppBase {
          // dd mmm
          var day = null;
          var month = null;
-         if (Application.getApp().Properties.getValue("force_date_english")) {
+         if (Application.getApp().getProperty("force_date_english")) {
             day = date.day;
             month = months[date.month];
          } else {

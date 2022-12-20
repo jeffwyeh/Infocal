@@ -630,4 +630,7 @@
     <setting propertyKey="@Properties.openweathermap_api" title="@Strings.openweathermap_api">
         <settingConfig type="alphaNumeric" />
     </setting>
+    <setting propertyKey="@Properties.enable_buffering" title="@Strings.enable_buffering">
+        <settingConfig type="boolean" />
+    </setting>
 </settings>

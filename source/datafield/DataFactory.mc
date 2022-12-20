@@ -413,17 +413,20 @@ class TemparatureGarminField extends BaseDataField {
 
    function cur_label(value) {
       var garmin_weather = App.getApp().Weather.getCurrentConditions();
+      var label = "TEMP --";
       if (garmin_weather != null) {
          var settings = Sys.getDeviceSettings();
          var unit = "°C";
          var temp = garmin_weather.temperature;
-         if (settings.temperatureUnits == System.UNIT_STATUTE) {
-            temp = temp * (9.0 / 5) + 32; // Convert to Farenheit: ensure floating point division.
-            unit = "°F";
+         if (temp != null) {
+            if (settings.temperatureUnits == System.UNIT_STATUTE) {
+               temp = temp * (9.0 / 5) + 32; // Convert to Farenheit: ensure floating point division.
+               unit = "°F";
+            }
+            label = "TEMP " + temp.format("%d") + unit;
          }
-         return "TEMP " + temp.format("%d") + unit;
       }
-      return "--";
+      return label;
    }
 }
 
