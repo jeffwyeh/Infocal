@@ -43,6 +43,9 @@
     <string id="ticks_style">Ticks style</string>
     <string id="ticks_style_arc">Arc style</string>
     <string id="ticks_style_marks">Mark style</string>
+    <string id="ticks_style_marks_top_gap">Mark style (gap at top for graph info)</string>
+    <string id="ticks_style_marks_bottom_gap">Mark style (gap at bottom for graph info)</string>
+    <string id="ticks_style_marks_top_bottom_gap">Mark style (gap at top and bottom for graph info)</string>
 
     <!-- Complication settings -->
     <string id="comp12h">12h complication</string>

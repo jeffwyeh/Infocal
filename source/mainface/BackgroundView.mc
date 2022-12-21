@@ -70,7 +70,7 @@ class BackgroundView extends Ui.Drawable {
                rad + 55
             );
          }
-      } else if (ticks_style == 2) {
+      } else if (ticks_style == 2 || ticks_style == 3 || ticks_style == 4 || ticks_style == 5) {
          dc.setColor(garc_color, Graphics.COLOR_TRANSPARENT);
          var bonus = 0;
          if (centerX == 130) {
@@ -82,17 +82,10 @@ class BackgroundView extends Ui.Drawable {
          } else if (centerX == 195) {
             bonus = 8;
          }
-         for (var i = 0; i < 12 * 5; i += 1) {
-            if (use_analog != 1 && (digital_style == 2 || digital_style == 0)) {
-               if (left_digital_info) {
-                  if (i > 45 && i < 55) {
-                     continue;
-                  }
-               } else {
-                  if (i > 5 && i < 15) {
-                     continue;
-                  }
-               }
+
+         for (var i = 0; i < 60; i += 1) {
+            if (skipTick(i, use_analog, digital_style, left_digital_info, ticks_style)) {
+               continue;
             }
 
             var rad = (i.toFloat() / (5 * 12.0)) * 2 * Math.PI - 0.5 * Math.PI;
@@ -110,5 +103,35 @@ class BackgroundView extends Ui.Drawable {
             );
          }
       }
+   }
+
+   function skipTick(tick_number, use_analog, digital_style, left_digital_info, ticks_style) {
+      var skip = false;
+      // Not analog, and using big or xbig digital style
+      // Skip ticks for digital info on left or right
+      if (use_analog != 1 && (digital_style == 0 || digital_style == 2)) {
+         if (left_digital_info) {
+            if (tick_number > 45 && tick_number < 55) {
+               skip = true;
+            }
+         } else {
+            if (tick_number > 5 && tick_number < 15) {
+               skip = true;
+            }
+         }
+      }
+      // Skip ticks for top graph number
+      if (ticks_style == 3 || ticks_style == 5) {
+         if (tick_number > 58 || tick_number < 2) {
+            skip = true;
+         }
+      }
+      // Skip ticks for bottom graph number
+      if (ticks_style == 4 || ticks_style == 5) {
+         if (tick_number > 28 && tick_number < 32) {
+            skip = true;
+         }
+      }
+      return skip;
    }
 }

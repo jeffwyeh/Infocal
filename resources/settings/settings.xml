@@ -240,6 +240,9 @@
         	<listEntry value="0">@Strings.empty</listEntry>
         	<listEntry value="1">@Strings.ticks_style_arc</listEntry>
         	<listEntry value="2">@Strings.ticks_style_marks</listEntry>
+        	<listEntry value="3">@Strings.ticks_style_marks_top_gap</listEntry>
+        	<listEntry value="4">@Strings.ticks_style_marks_bottom_gap</listEntry>
+        	<listEntry value="5">@Strings.ticks_style_marks_top_bottom_gap</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp12h" title="@Strings.comp12h">
