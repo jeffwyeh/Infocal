@@ -3,11 +3,11 @@
 
     <property id="background_color" type="number">0</property>
     <property id="text_color" type="number">16777215</property>
-    <property id="accent_color" type="number">16711680</property>
-    <property id="bar_background_color" type="number">5592405</property>
+    <property id="accent_color" type="number">43775</property>
+    <property id="bar_background_color" type="number">11184810</property>
     <property id="indicator_ticks_color" type="number">5592405</property>
-    <property id="bar_graph_color_top" type="number">16776960</property>
-    <property id="bar_graph_color_bottom" type="number">255</property>
+    <property id="bar_graph_color_top" type="number">65280</property>
+    <property id="bar_graph_color_bottom" type="number">16776960</property>
 
 	<property id="power_save_mode" type="boolean">true</property>
     <property id="sleep_time_behaviour" type="number">0</property>
