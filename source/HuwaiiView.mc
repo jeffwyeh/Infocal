@@ -75,11 +75,14 @@ class HuwaiiView extends WatchUi.WatchFace {
          // create a buffer to draw to
          // so it can be pasted straight to
          // the screen instead of redrawing
-         if (Toybox.Graphics has :BufferedBitmap) {
-            screenbuffer = new Graphics.BufferedBitmap({
-               :width => dc.getWidth(),
-               :height => dc.getHeight(),
-            });
+         var params = {
+            :width => dc.getWidth(),
+            :height => dc.getHeight(),
+         };
+         if (Toybox.Graphics has :createBufferedBitmap) {
+            screenbuffer = Graphics.createBufferedBitmap(params).get();
+         } else if (Toybox.Graphics has :BufferedBitmap) {
+            screenbuffer = new Graphics.BufferedBitmap(params);
          }
       }
    }
