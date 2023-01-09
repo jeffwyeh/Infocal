@@ -48,6 +48,8 @@ enum /* FIELD_TYPES */ {
    FIELD_TYPE_STRESS,
    FIELD_TYPE_BB_STRESS,
    FIELD_TYPE_TEMPERATURE_GARMIN,
+   FIELD_TYPE_PRECIPITATION_GARMIN,
+   FIELD_TYPE_WEATHER_GARMIN,
 }
 
 function buildFieldObject(type) {
@@ -117,6 +119,10 @@ function buildFieldObject(type) {
       return new BodyBatteryStressField(FIELD_TYPE_BB_STRESS);
    } else if (type == FIELD_TYPE_TEMPERATURE_GARMIN) {
       return new TemparatureGarminField(FIELD_TYPE_TEMPERATURE_GARMIN);
+   } else if (type == FIELD_TYPE_PRECIPITATION_GARMIN) {
+      return new PrecipitationGarminField(FIELD_TYPE_PRECIPITATION_GARMIN);
+   } else if (type == FIELD_TYPE_WEATHER_GARMIN) {
+      return new WeatherGarminField(FIELD_TYPE_WEATHER_GARMIN);
    }
 
    return new EmptyDataField(FIELD_TYPE_EMPTY);
@@ -424,6 +430,108 @@ class TemparatureGarminField extends BaseDataField {
                unit = "°F";
             }
             label = "TEMP " + temp.format("%d") + unit;
+         }
+      }
+      return label;
+   }
+}
+
+/* WEATHER GARMIN */
+class WeatherGarminField extends BaseDataField {
+   var weather_condition_mapper;
+   function initialize(id) {
+      BaseDataField.initialize(id);
+      weather_condition_mapper = [
+         "CLR",  // 0
+         "CLDY",
+         "CLDY",
+         "RAIN",
+         "SNOW",
+         "WNDY", // 5
+         "TNDR",
+         "SNOW",
+         "FOG",
+         "HAZY",
+         "HAIL", // 10
+         "SHWR",
+         "TNDR",
+         "RAIN",
+         "RAIN",
+         "RAIN", // 15
+         "SNOW",
+         "SNOW",
+         "SNOW",
+         "SNOW",
+         "CLDY", // 20
+         "SNOW",
+         "CLDY",
+         "CLR",
+         "SHWR",
+         "SHWR", // 25
+         "SHWR",
+         "SHWR",
+         "TNDR",
+         "MIST",
+         "DUST", // 30
+         "DRZZ",
+         "TNDO",
+         "SMOK",
+         "ICE",
+         "SAND", // 35
+         "SQLL",
+         "SAND",
+         "ASH",
+         "HAZE",
+         "FAIR", // 40
+         "HURR",
+         "TROP",
+         "SNOW",
+         "SNOW",
+         "RAIN", // 45
+         "SNOW",
+         "SNOW",
+         "FLRR",
+         "SLEET",
+         "SLEET", // 50
+         "SNOW",
+         "CLDY",
+         "WTHR"
+      ];
+   }
+
+   function cur_label(value) {
+      var garmin_weather = App.getApp().Weather.getCurrentConditions();
+      var label = "WTHR --";
+      if (garmin_weather != null) {
+         var settings = Sys.getDeviceSettings();
+         var unit = "°C";
+         var temp = garmin_weather.temperature;
+         var cond = garmin_weather.condition;
+         if (temp != null) {
+            if (settings.temperatureUnits == System.UNIT_STATUTE) {
+               temp = temp * (9.0 / 5) + 32; // Convert to Farenheit: ensure floating point division.
+               unit = "°F";
+            }
+            label = weather_condition_mapper[cond] + " " + temp.format("%d") + unit;
+         }
+      }
+      return label;
+   }
+}
+
+/* PRECIPITATION GARMIN */
+class PrecipitationGarminField extends BaseDataField {
+   function initialize(id) {
+      BaseDataField.initialize(id);
+   }
+
+   function cur_label(value) {
+      var garmin_weather = App.getApp().Weather.getCurrentConditions();
+      var label = "RAIN --";
+      if (garmin_weather != null) {
+         var rain = garmin_weather.precipitationChance;
+         if (rain != null) {
+            label = "RAIN " + rain.format("%d") + "%";
          }
       }
       return label;

@@ -99,6 +99,10 @@ class HuwaiiApp extends Application.AppBase {
    // Currently called on layout initialisation, when settings change, and on exiting sleep.
    (:background_method)
    function checkPendingWebRequests() {
+      if (Application.getApp().getProperty("openweathermap_api").length() == 0) {
+         // OpenWeatherMap API key is not set, skip all of this.
+         return;
+      }
       // Attempt to update current location, to be used by Sunrise/Sunset, and Weather.
       // If current location available from current activity, save it in case it goes "stale" and can not longer be retrieved.
       var location = Activity.getActivityInfo().currentLocation;

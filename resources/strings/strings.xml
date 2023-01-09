@@ -82,6 +82,8 @@
     <string id="temperature_garmin">Temperature (Garmin weather)</string>
     <string id="temperature_out">Temperature</string>
     <string id="temperature_hl">Temperature (high/low)</string>
+    <string id="precipitation_garmin">Precipitation (Garmin weather)</string>
+    <string id="weather_garmin">Weather (Garmin weather)</string>
     <string id="sunriseset">Sun rise/set time</string>
     <string id="floorclimbed">Floor climbed</string>
     <string id="groupnoti">Group notification</string>

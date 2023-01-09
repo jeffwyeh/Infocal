@@ -269,6 +269,8 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="33">@Strings.precipitation_garmin</listEntry>
+            <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
             <listEntry value="15">@Strings.floorclimbed</listEntry>
             <listEntry value="18">@Strings.barometer</listEntry>
@@ -305,6 +307,8 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="33">@Strings.precipitation_garmin</listEntry>
+            <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
             <listEntry value="15">@Strings.floorclimbed</listEntry>
             <listEntry value="18">@Strings.barometer</listEntry>
@@ -341,6 +345,8 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="33">@Strings.precipitation_garmin</listEntry>
+            <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
             <listEntry value="15">@Strings.floorclimbed</listEntry>
             <listEntry value="18">@Strings.barometer</listEntry>
@@ -377,6 +383,8 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="33">@Strings.precipitation_garmin</listEntry>
+            <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
             <listEntry value="15">@Strings.floorclimbed</listEntry>
             <listEntry value="18">@Strings.barometer</listEntry>
@@ -413,6 +421,8 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="33">@Strings.precipitation_garmin</listEntry>
+            <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
             <listEntry value="15">@Strings.floorclimbed</listEntry>
             <listEntry value="18">@Strings.barometer</listEntry>
@@ -449,6 +459,8 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="33">@Strings.precipitation_garmin</listEntry>
+            <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
             <listEntry value="15">@Strings.floorclimbed</listEntry>
             <listEntry value="18">@Strings.barometer</listEntry>
@@ -485,6 +497,8 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="33">@Strings.precipitation_garmin</listEntry>
+            <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
             <listEntry value="15">@Strings.floorclimbed</listEntry>
             <listEntry value="18">@Strings.barometer</listEntry>
@@ -521,6 +535,8 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="33">@Strings.precipitation_garmin</listEntry>
+            <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
             <listEntry value="15">@Strings.floorclimbed</listEntry>
             <listEntry value="18">@Strings.barometer</listEntry>
