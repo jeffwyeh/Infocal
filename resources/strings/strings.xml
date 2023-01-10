@@ -3,15 +3,10 @@
 
     <!-- Basic settings -->
     <string id="power_save_mode">Power saving mode (refresh per minute)</string>
-    <string id="white_background">Use white background</string>
 
     <string id="always_on_second">Always-on second (digital only)</string>
     <string id="always_on_heart">Always-on heart rate (digital only)</string>
 
-    <string id="sleep_time_behaviour">Sleep behaviour (currently disabled)</string>
-    <string id="default_render">Default (still render screen)</string>
-    <string id="no_render">Screen off to save power</string>
-    
     <string id="minimal_data">Do not abbreviate large numbers</string>
     
     <string id="force_date_english">Force date to English (prevent rectangle on unsupported chars)</string>
@@ -81,7 +76,8 @@
     <string id="temperature">Temperature (on device sensor)</string>
     <string id="temperature_garmin">Temperature (Garmin weather)</string>
     <string id="temperature_out">Temperature</string>
-    <string id="temperature_hl">Temperature (high/low)</string>
+    <string id="temperature_hl">Temperature High/Low)</string>
+    <string id="temperature_hl_garmin">Temperature High/Low (Garmin weather)</string>
     <string id="precipitation_garmin">Precipitation (Garmin weather)</string>
     <string id="weather_garmin">Weather (Garmin weather)</string>
     <string id="sunriseset">Sun rise/set time</string>

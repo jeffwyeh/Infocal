@@ -185,12 +185,6 @@
 	<setting propertyKey="@Properties.power_save_mode" title="@Strings.power_save_mode">
         <settingConfig type="boolean" />
     </setting>
-    <setting propertyKey="@Properties.sleep_time_behaviour" title="@Strings.sleep_time_behaviour">
-        <settingConfig type="list">
-        	<listEntry value="0">@Strings.default_render</listEntry>
-        	<listEntry value="1">@Strings.no_render</listEntry>
-        </settingConfig>
-    </setting>
     
     <setting propertyKey="@Properties.always_on_second" title="@Strings.always_on_second">
         <settingConfig type="boolean" />
@@ -245,6 +239,7 @@
         	<listEntry value="5">@Strings.ticks_style_marks_top_bottom_gap</listEntry>
         </settingConfig>
     </setting>
+
     <setting propertyKey="@Properties.comp12h" title="@Strings.comp12h">
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
@@ -269,6 +264,7 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="35">@Strings.temperature_hl_garmin</listEntry>
             <listEntry value="33">@Strings.precipitation_garmin</listEntry>
             <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -307,6 +303,7 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="35">@Strings.temperature_hl_garmin</listEntry>
             <listEntry value="33">@Strings.precipitation_garmin</listEntry>
             <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -345,6 +342,7 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="35">@Strings.temperature_hl_garmin</listEntry>
             <listEntry value="33">@Strings.precipitation_garmin</listEntry>
             <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -383,6 +381,7 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="35">@Strings.temperature_hl_garmin</listEntry>
             <listEntry value="33">@Strings.precipitation_garmin</listEntry>
             <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -421,6 +420,7 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="35">@Strings.temperature_hl_garmin</listEntry>
             <listEntry value="33">@Strings.precipitation_garmin</listEntry>
             <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -459,6 +459,7 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="35">@Strings.temperature_hl_garmin</listEntry>
             <listEntry value="33">@Strings.precipitation_garmin</listEntry>
             <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -497,6 +498,7 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="35">@Strings.temperature_hl_garmin</listEntry>
             <listEntry value="33">@Strings.precipitation_garmin</listEntry>
             <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>
@@ -535,6 +537,7 @@
             <listEntry value="32">@Strings.temperature_garmin</listEntry>
             <listEntry value="23">@Strings.temperature_out</listEntry>
             <listEntry value="24">@Strings.temperature_hl</listEntry>
+            <listEntry value="35">@Strings.temperature_hl_garmin</listEntry>
             <listEntry value="33">@Strings.precipitation_garmin</listEntry>
             <listEntry value="34">@Strings.weather_garmin</listEntry>
             <listEntry value="14">@Strings.sunriseset</listEntry>

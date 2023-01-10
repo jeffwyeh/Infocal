@@ -10,9 +10,7 @@
     <property id="bar_graph_color_bottom" type="number">16776960</property>
 
 	<property id="power_save_mode" type="boolean">true</property>
-    <property id="sleep_time_behaviour" type="number">0</property>
 	
-    <property id="white_background" type="boolean">false</property>
     <property id="always_on_second" type="boolean">false</property>
     <property id="always_on_heart" type="boolean">false</property>
     <property id="use_analog" type="boolean">false</property>
@@ -56,5 +54,5 @@
     
     <property id="ctext_input" type="string"></property>
 
-    <property id="openweathermap_api" type="string">8c87819e23c9df22296aa2b3b0c2417b</property>
+    <property id="openweathermap_api" type="string"></property>
 </properties>
