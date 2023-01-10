@@ -89,6 +89,7 @@ class HuwaiiApp extends Application.AppBase {
          // checkPendingWebRequests() can be excluded to save memory.
          checkPendingWebRequests();
       }
+      mView.checkGlobals();
       mView.last_draw_minute = -1;
       WatchUi.requestUpdate(); // update the view to reflect changes
    }

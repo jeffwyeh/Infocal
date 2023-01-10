@@ -31,15 +31,14 @@ var gbar_color_1 = 0x0000ff;
 
 var gtheme = -1;
 
-var force_render_component = false;
-
 var last_battery_percent = -1;
 var last_hour_consumption = -1;
 
 class HuwaiiView extends WatchUi.WatchFace {
    var last_draw_minute = -1;
-   var restore_from_resume = false;
    var last_resume_milli = 0;
+   var restore_from_resume = false;
+   var restore_web_requests = false;
 
    var last_battery_hour = null;
 
@@ -85,16 +84,16 @@ class HuwaiiView extends WatchUi.WatchFace {
             screenbuffer = new Graphics.BufferedBitmap(params);
          }
       }
+      checkGlobals();
    }
 
    // Called when this View is brought to the foreground. Restore
    // the state of this View and prepare it to be shown. This includes
    // loading resources into memory.
    function onShow() {
-      var clockTime = System.getClockTime();
-
       last_draw_minute = -1;
       restore_from_resume = true;
+      restore_web_requests = true;
       last_resume_milli = System.getTimer();
       checkBackgroundRequest();
    }
@@ -102,7 +101,8 @@ class HuwaiiView extends WatchUi.WatchFace {
    // Update the view
    function onUpdate(dc) {
       var clockTime = System.getClockTime();
-      var current_tick = System.getTimer();
+      var current_milli = System.getTimer();
+      var minute_changed = clockTime.min != last_draw_minute;
 
       // Calculate battery consumption in days
       var time_now = Time.now();
@@ -114,24 +114,25 @@ class HuwaiiView extends WatchUi.WatchFace {
          // 60 min
          last_battery_hour = time_now;
          var current_battery = System.getSystemStats().battery;
-         last_hour_consumption = last_battery_percent - current_battery;
-         if (last_hour_consumption < 0) {
-            last_hour_consumption = -1;
+         var temp_last_battery_percent = last_battery_percent;
+         var temp_last_hour_consumption = temp_last_battery_percent - current_battery;
+         if (temp_last_hour_consumption < 0) {
+            temp_last_hour_consumption = -1;
          }
-         if (last_hour_consumption > 0) {
+         if (temp_last_hour_consumption > 0) {
             App.getApp().setProperty(
                "last_hour_consumption",
-               last_hour_consumption
+               temp_last_hour_consumption
             );
 
             var consumption_history =
                App.getApp().getProperty("consumption_history");
             if (consumption_history == null) {
                App.getApp().setProperty("consumption_history", [
-                  last_hour_consumption,
+                  temp_last_hour_consumption,
                ]);
             } else {
-               consumption_history.add(last_hour_consumption);
+               consumption_history.add(temp_last_hour_consumption);
                if (consumption_history.size() > 24) {
                   var object0 = consumption_history[0];
                   consumption_history.remove(object0);
@@ -143,6 +144,7 @@ class HuwaiiView extends WatchUi.WatchFace {
             }
          }
          last_battery_percent = current_battery;
+         last_hour_consumption = temp_last_hour_consumption;
       }
 
       // if this device has the clear dc bug
@@ -152,97 +154,53 @@ class HuwaiiView extends WatchUi.WatchFace {
          Application.getApp().getProperty("power_save_mode") &&
          screenbuffer != null
       ) {
-         var current_minute = clockTime.min;
          // if minute has changed, draw to the buffer
-         if (current_minute != last_draw_minute) {
-            last_draw_minute = current_minute;
-            force_render_component = true;
+         if (minute_changed) {
+            last_draw_minute = clockTime.min;
+            minute_changed = false;
             mainDrawComponents(screenbuffer.getDc());
-            force_render_component = false;
          }
          // copy buffer to screen
          dc.drawBitmap(0, 0, screenbuffer);
       }
 
-      var always_on_style = Application.getApp().getProperty("always_on_style");
-      if (centerX == 195) {
-         if (always_on_style == 0) {
-            second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
-            second_font_height_half = 16;
-            second_clip_size = [40, 30];
-         } else {
-            second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
-            second_font_height_half = 16;
-            second_clip_size = [52, 44];
+      if (restore_web_requests || minute_changed) {
+         // After resuming (`onShow()` called), allow web requests
+         // to keep trying for 5s, or allow it on the minute change
+         if (restore_web_requests && (current_milli - last_resume_milli > 5000)) {
+            restore_web_requests = false;
          }
-      } else {
-         if (always_on_style == 0) {
-            second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
-            second_font_height_half = 7;
-            second_clip_size = [20, 15];
-         } else {
-            second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
-            second_font_height_half = 14;
-            second_clip_size = [26, 22];
-         }
+         checkBackgroundRequest();
       }
 
-      force_render_component = true;
       if (Application.getApp().getProperty("power_save_mode")) {
-         if (restore_from_resume) {
-            var current_milli = current_tick;
-            force_render_component = true;
-            // will allow watch face to refresh in 5s when resumed (`onShow()` called)
-            if (current_milli - last_resume_milli > 5000) {
+         if (restore_from_resume || minute_changed) {
+            if (restore_from_resume) {
                restore_from_resume = false;
             }
-            // in resume time
-            checkBackgroundRequest();
+            last_draw_minute = clockTime.min;
+            minute_changed = false;
             mainDrawComponents(dc);
-            force_render_component = false;
-         } else {
-            var current_minute = clockTime.min;
-            if (current_minute != last_draw_minute) {
-               // continue
-               last_draw_minute = current_minute;
-               // minute turn
-               checkBackgroundRequest();
-               mainDrawComponents(dc);
-            }
          }
       } else {
-         // normal power mode
-         if (restore_from_resume) {
-            var current_milli = current_tick;
-            force_render_component = true;
-            // will allow watch face to refresh in 5s when resumed (`onShow()` called)
-            if (current_milli - last_resume_milli > 5000) {
-               restore_from_resume = false;
-            }
+         if (minute_changed) {
+            last_draw_minute = clockTime.min;
          }
-         force_render_component = true;
-         if (clockTime.min != last_draw_minute) {
-            // Only check background web request every 1 minute
-            checkBackgroundRequest();
+         if (restore_from_resume) {
+            restore_from_resume = false;
          }
          mainDrawComponents(dc);
-         last_draw_minute = clockTime.min;
-         force_render_component = false;
       }
-      force_render_component = false;
 
+      // Update always on seconds and HR
       onPartialUpdate(dc);
    }
 
    function mainDrawComponents(dc) {
-      checkTheme();
-
-      if (force_render_component) {
-         dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
-         dc.clear();
-         dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
-         dc.fillRectangle(0, 0, centerX * 2, centerY * 2);
-      }
+      dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
+      dc.clear();
+      dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
+      dc.fillRectangle(0, 0, centerX * 2, centerY * 2);
 
       var analogDisplay = View.findDrawableById("analog");
       var digitalDisplay = View.findDrawableById("digital");
@@ -374,6 +332,11 @@ class HuwaiiView extends WatchUi.WatchFace {
       }
    }
 
+   function checkGlobals() {
+      checkTheme();
+      checkAlwaysOnStyle();
+   }
+
    function checkTheme() {
       var theme_code = Application.getApp().getProperty("theme_code");
       if (gtheme != theme_code || theme_code == 18) {
@@ -447,6 +410,31 @@ class HuwaiiView extends WatchUi.WatchFace {
          }
          // set the global theme
          gtheme = theme_code;
+      }
+   }
+
+   function checkAlwaysOnStyle() {
+      var always_on_style = Application.getApp().getProperty("always_on_style");
+      if (centerX == 195) {
+         if (always_on_style == 0) {
+            second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
+            second_font_height_half = 16;
+            second_clip_size = [40, 30];
+         } else {
+            second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
+            second_font_height_half = 16;
+            second_clip_size = [52, 44];
+         }
+      } else {
+         if (always_on_style == 0) {
+            second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
+            second_font_height_half = 7;
+            second_clip_size = [20, 15];
+         } else {
+            second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
+            second_font_height_half = 14;
+            second_clip_size = [26, 22];
+         }
       }
    }
 

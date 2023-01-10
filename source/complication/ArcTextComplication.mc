@@ -103,30 +103,26 @@ class ArcTextComplication extends Ui.Drawable {
 
       var text = get_text();
 
-      if (last_draw_text.equals(text) && !force_render_component) {
-         // do not draw
-      } else {
-         dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
+      dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
 
-         dc.setPenWidth(20);
-         var target_r =
-            barRadius -
-            (((baseDegree < 180 ? 6 : -3) * centerX) / 120).toNumber();
-         dc.drawArc(
-            centerX,
-            centerY,
-            target_r,
-            Graphics.ARC_CLOCKWISE,
-            360.0 - (baseDegree - 30.0),
-            360.0 - (baseDegree + 30.0)
-         );
+      dc.setPenWidth(20);
+      var target_r =
+         barRadius -
+         (((baseDegree < 180 ? 6 : -3) * centerX) / 120).toNumber();
+      dc.drawArc(
+         centerX,
+         centerY,
+         target_r,
+         Graphics.ARC_CLOCKWISE,
+         360.0 - (baseDegree - 30.0),
+         360.0 - (baseDegree + 30.0)
+      );
 
-         dc.setPenWidth(1);
-         dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+      dc.setPenWidth(1);
+      dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 
-         drawArcText(dc, text);
-         last_draw_text = text;
-      }
+      drawArcText(dc, text);
+      last_draw_text = text;
    }
 
    hidden function drawArcText(dc, text) {
