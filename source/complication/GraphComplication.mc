@@ -20,16 +20,16 @@ class GraphComplication extends Ui.Drawable {
       position = params.get(:position);
       if (position == 0) {
          // top
-         position_x = centerX;
-         position_y = 0.5 * centerY;
+         position_x = center_x;
+         position_y = 0.5 * center_y;
       } else {
          // bottom
-         position_x = centerX;
-         position_y = 1.45 * centerY;
+         position_x = center_x;
+         position_y = 1.45 * center_y;
       }
 
       graph_width = 90;
-      graph_height = Math.round(0.25 * centerX);
+      graph_height = Math.round(0.25 * center_x);
    }
 
    function get_data_type() {
@@ -134,7 +134,7 @@ class GraphComplication extends Ui.Drawable {
             dc.drawText(
                position_x,
                position_y,
-               smallDigitalFont,
+               small_digi_font,
                "--",
                Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
             );
@@ -149,7 +149,7 @@ class GraphComplication extends Ui.Drawable {
             dc.drawText(
                position_x,
                position_y,
-               smallDigitalFont,
+               small_digi_font,
                "--",
                Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
             );
@@ -231,7 +231,7 @@ class GraphComplication extends Ui.Drawable {
                   (position == 1
                      ? graph_height / 2 + 10
                      : -graph_height / 2 - 16),
-               smallDigitalFont,
+               small_digi_font,
                "--",
                Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
             );
@@ -243,7 +243,7 @@ class GraphComplication extends Ui.Drawable {
             position_x,
             position_y +
                (position == 1 ? graph_height / 2 + 10 : -graph_height / 2 - 16),
-            smallDigitalFont,
+            small_digi_font,
             labelll,
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
          );
@@ -256,7 +256,7 @@ class GraphComplication extends Ui.Drawable {
          dc.drawText(
             position_x,
             position_y,
-            smallDigitalFont,
+            small_digi_font,
             "--",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
          );

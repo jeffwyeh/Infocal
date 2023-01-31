@@ -15,9 +15,6 @@ using Toybox.Time.Gregorian as Date;
 var gLocationLat = null;
 var gLocationLng = null;
 
-var centerX;
-var centerY;
-
 function degreesToRadians(degrees) {
    return (degrees * Math.PI) / 180;
 }
@@ -27,11 +24,11 @@ function radiansToDegrees(radians) {
 }
 
 function convertCoorX(radians, radius) {
-   return centerX + radius * Math.cos(radians);
+   return center_x + radius * Math.cos(radians);
 }
 
 function convertCoorY(radians, radius) {
-   return centerY + radius * Math.sin(radians);
+   return center_y + radius * Math.sin(radians);
 }
 
 (:background)

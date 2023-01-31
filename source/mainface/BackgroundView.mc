@@ -12,8 +12,8 @@ class BackgroundView extends Ui.Drawable {
 
    function initialize(params) {
       Drawable.initialize(params);
-      radius = centerX - ((10 * centerX) / 120).toNumber();
-      if (centerX == 195) {
+      radius = center_x - ((10 * center_x) / 120).toNumber();
+      if (center_x == 195) {
          mark_length = 20;
       }
    }
@@ -62,8 +62,8 @@ class BackgroundView extends Ui.Drawable {
             }
             var rad = (i.toFloat() / 6.0) * 360;
             dc.drawArc(
-               centerX,
-               centerY,
+               center_x,
+               center_y,
                radius - 15,
                dc.ARC_COUNTER_CLOCKWISE,
                rad + 5,
@@ -73,13 +73,13 @@ class BackgroundView extends Ui.Drawable {
       } else if (ticks_style == 2 || ticks_style == 3 || ticks_style == 4 || ticks_style == 5) {
          dc.setColor(garc_color, Graphics.COLOR_TRANSPARENT);
          var bonus = 0;
-         if (centerX == 130) {
+         if (center_x == 130) {
             bonus = 2;
-         } else if (centerX == 140) {
+         } else if (center_x == 140) {
             bonus = 3;
-         } else if (centerX == 109) {
+         } else if (center_x == 109) {
             bonus = -2;
-         } else if (centerX == 195) {
+         } else if (center_x == 195) {
             bonus = 8;
          }
 

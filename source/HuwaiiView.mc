@@ -8,11 +8,13 @@ using Toybox.Application as App;
 using Toybox.ActivityMonitor as Mon;
 using Toybox.UserProfile;
 
-var smallDigitalFont = null;
+var small_digi_font = null;
 var second_digi_font = null;
 var second_x = 160;
 var second_y = 140;
 var heart_x = 80;
+var center_x;
+var center_y;
 
 var second_font_height_half = 7;
 var second_background_color = 0x000000;
@@ -46,7 +48,6 @@ class HuwaiiView extends WatchUi.WatchFace {
    var font_height_half = 7;
 
    var face_radius;
-   var current_is_analogue = false;
 
    var did_clear = false;
 
@@ -58,14 +59,11 @@ class HuwaiiView extends WatchUi.WatchFace {
 
    // Load your resources here
    function onLayout(dc) {
-      smallDigitalFont = WatchUi.loadResource(Rez.Fonts.smadigi);
-      centerX = dc.getWidth() / 2;
-      centerY = dc.getHeight() / 2;
+      small_digi_font = WatchUi.loadResource(Rez.Fonts.smadigi);
+      center_x = dc.getWidth() / 2;
+      center_y = dc.getHeight() / 2;
 
-      face_radius = centerX - ((18 * centerX) / 120).toNumber();
-
-      current_is_analogue =
-         Application.getApp().getProperty("use_analog");
+      face_radius = center_x - ((18 * center_x) / 120).toNumber();
 
       setLayout(Rez.Layouts.WatchFace(dc));
 
@@ -200,23 +198,7 @@ class HuwaiiView extends WatchUi.WatchFace {
       dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
       dc.clear();
       dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
-      dc.fillRectangle(0, 0, centerX * 2, centerY * 2);
-
-      var analogDisplay = View.findDrawableById("analog");
-      var digitalDisplay = View.findDrawableById("digital");
-
-      if (
-         current_is_analogue != Application.getApp().getProperty("use_analog")
-      ) {
-         // switch style
-         if (current_is_analogue) {
-            // turned to digital
-            analogDisplay.removeFont();
-         } else {
-            // turned to analogue
-            digitalDisplay.removeFont();
-         }
-      }
+      dc.fillRectangle(0, 0, center_x * 2, center_y * 2);
 
       var backgroundView = View.findDrawableById("background");
       var bar1 = View.findDrawableById("aBarDisplay");
@@ -236,7 +218,7 @@ class HuwaiiView extends WatchUi.WatchFace {
       bar6.draw(dc);
 
       dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
-      dc.fillCircle(centerX, centerY, face_radius);
+      dc.fillCircle(center_x, center_y, face_radius);
 
       backgroundView.draw(dc);
       bbar1.draw(dc);
@@ -247,11 +229,10 @@ class HuwaiiView extends WatchUi.WatchFace {
       bgraph1.draw(dc);
       bgraph2.draw(dc);
 
-      // Call the parent onUpdate function to redraw the layout
       if (Application.getApp().getProperty("use_analog")) {
-         analogDisplay.draw(dc);
+         View.findDrawableById("analog").draw(dc);
       } else {
-         digitalDisplay.draw(dc);
+         View.findDrawableById("digital").draw(dc);
       }
    }
 
@@ -415,7 +396,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 
    function checkAlwaysOnStyle() {
       var always_on_style = Application.getApp().getProperty("always_on_style");
-      if (centerX == 195) {
+      if (center_x == 195) {
          if (always_on_style == 0) {
             second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
             second_font_height_half = 16;
@@ -436,6 +417,11 @@ class HuwaiiView extends WatchUi.WatchFace {
             second_clip_size = [26, 22];
          }
       }
+   }
+
+   function removeAllFonts() {
+      View.findDrawableById("analog").removeFont();
+      View.findDrawableById("digital").removeFont(); 
    }
 
    function checkBackgroundRequest() {

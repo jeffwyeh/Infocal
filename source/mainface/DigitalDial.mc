@@ -27,11 +27,11 @@ class DigitalDial extends Ui.Drawable {
 
    function initialize(params) {
       Drawable.initialize(params);
-      barRadius = centerX - 10;
+      barRadius = center_x - 10;
       alignment = Graphics.TEXT_JUSTIFY_VCENTER | Graphics.TEXT_JUSTIFY_CENTER;
 
       bonusy_smallsize = 0;
-      if (centerX == 195) {
+      if (center_x == 195) {
          bonusy_smallsize = -35;
       }
    }
@@ -47,11 +47,6 @@ class DigitalDial extends Ui.Drawable {
    }
 
    function checkCurrentFont() {
-      if (Application.getApp().getProperty("use_analog") == true) {
-         removeFont();
-         return;
-      }
-
       var digital_style = Application.getApp().getProperty("digital_style");
       if (digital_style == 0) {
          // big
@@ -101,12 +96,18 @@ class DigitalDial extends Ui.Drawable {
    }
 
    function draw(dc) {
-      // possibly remove all font to save memory
-      checkCurrentFont();
-
       if (Application.getApp().getProperty("use_analog") == true) {
+         removeFont();
          return;
       }
+      checkCurrentFont();
+
+      // Get locals
+      var second_x_l = second_x;
+      var second_y_l = second_y;
+      var heart_x_l = heart_x;
+      var center_x_l = center_x;
+      var center_y_l = center_y;
 
       var currentSettings = System.getDeviceSettings();
       var clockTime = System.getClockTime();
@@ -117,26 +118,17 @@ class DigitalDial extends Ui.Drawable {
       }
       var minute = clockTime.min;
 
-      var leading_zeros = Application.getApp().getProperty(
-         "zero_leading_digital"
-      );
+      var leading_zeros = Application.getApp().getProperty("zero_leading_digital");
       var number_formater = leading_zeros ? "%02d" : "%d";
 
       var digital_style = Application.getApp().getProperty("digital_style");
       var alwayon_style = Application.getApp().getProperty("always_on_style");
       if (digital_style == 0 || digital_style == 2) {
-         // big or extra big
-         var bignumber =
-            Application.getApp().getProperty("big_number_type") == 0
-               ? minute
-               : hour;
-         var smallnumber =
-            Application.getApp().getProperty("big_number_type") == 0
-               ? hour
-               : minute;
+         var big_number_type = Application.getApp().getProperty("big_number_type");
+         var bignumber = (big_number_type == 0) ? minute : hour;
+         var smallnumber = (big_number_type == 0) ? hour : minute;
 
-         var target_center_font =
-            digital_style == 0 ? digitalFont : xdigitalFont;
+         var target_center_font = digital_style == 0 ? digitalFont : xdigitalFont;
 
          // DRAW CENTER
          var bigText = bignumber.format(number_formater);
@@ -145,8 +137,8 @@ class DigitalDial extends Ui.Drawable {
          var h = dc.getFontHeight(target_center_font);
          var w = dc.getTextWidthInPixels(bigText, target_center_font);
          dc.drawText(
-            centerX,
-            centerY - h / 4,
+            center_x_l,
+            center_y_l - h / 4,
             target_center_font,
             bigText,
             alignment
@@ -157,8 +149,8 @@ class DigitalDial extends Ui.Drawable {
             dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
             var w2 = dc.getTextWidthInPixels("\\", target_center_font);
             dc.drawText(
-               centerX + w2 - w / 2,
-               centerY - h / 4,
+               center_x_l + w2 - w / 2,
+               center_y_l - h / 4,
                target_center_font,
                "\\",
                Graphics.TEXT_JUSTIFY_VCENTER
@@ -166,44 +158,44 @@ class DigitalDial extends Ui.Drawable {
          }
 
          var f_align = digital_style == 0 ? 62 : 71;
-         if (centerX == 195) {
+         if (center_x_l == 195) {
             f_align = f_align + 40;
          }
 
-         second_x = centerX + w / 2 + 3;
-         heart_x = centerX - w / 2 - 3;
+         second_x_l = center_x_l + w / 2 + 3;
+         heart_x_l = center_x_l - w / 2 - 3;
 
-         if (centerX == 109 && digital_style == 2) {
-            second_y =
-               centerY -
+         if (center_x_l == 109 && digital_style == 2) {
+            second_y_l =
+               center_y_l -
                second_font_height_half / 2 -
                (alwayon_style == 0 ? 3 : 6);
          } else {
-            second_y =
-               centerY +
+            second_y_l =
+               center_y_l +
                (h - f_align) / 2 -
                second_font_height_half * 2 +
                (alwayon_style == 0 ? 0 : 5);
          }
-         // DRAW INFOS
 
+         // DRAW INFOS
          // calculate alignment
          var bonus_alignment = 0;
          var extra_info_alignment = 0;
          var vertical_alignment = 0;
-         if (centerX == 109) {
+         if (center_x_l == 109) {
             bonus_alignment = 4;
             if (digital_style == 2) {
                bonus_alignment = 4;
                vertical_alignment = -23;
             }
-         } else if (centerX == 120 && digital_style == 2) {
+         } else if (center_x_l == 120 && digital_style == 2) {
             bonus_alignment = 6;
             extra_info_alignment = 4;
          }
-         var target_info_x = centerX * 1.6;
+         var target_info_x = center_x_l * 1.6;
          if (Application.getApp().getProperty("left_digital_info")) {
-            target_info_x = centerX * 0.4;
+            target_info_x = center_x_l * 0.4;
             bonus_alignment = -bonus_alignment;
             extra_info_alignment = -extra_info_alignment;
          }
@@ -215,8 +207,8 @@ class DigitalDial extends Ui.Drawable {
          dc.setPenWidth(20);
          if (Application.getApp().getProperty("left_digital_info")) {
             dc.drawArc(
-               centerX,
-               centerY,
+               center_x_l,
+               center_y_l,
                barRadius,
                Graphics.ARC_CLOCKWISE,
                180 - 10,
@@ -224,8 +216,8 @@ class DigitalDial extends Ui.Drawable {
             );
          } else {
             dc.drawArc(
-               centerX,
-               centerY,
+               center_x_l,
+               center_y_l,
                barRadius,
                Graphics.ARC_CLOCKWISE,
                60 - 10,
@@ -239,37 +231,37 @@ class DigitalDial extends Ui.Drawable {
          var h2 = dc.getFontHeight(midDigitalFont);
          dc.drawText(
             target_info_x + bonus_alignment,
-            centerY * 0.7 - h2 / 4 + 5 + vertical_alignment,
+            center_y_l * 0.7 - h2 / 4 + 5 + vertical_alignment,
             midDigitalFont,
             smallnumber.format(number_formater),
             alignment
          );
 
-         if (centerX == 109 && digital_style == 2) {
+         if (center_x_l == 109 && digital_style == 2) {
             return;
          }
 
          // draw date str
          var dateText = Application.getApp().getFormattedDate();
          dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-         var h3 = dc.getFontHeight(smallDigitalFont);
+         var h3 = dc.getFontHeight(small_digi_font);
          dc.drawText(
             target_info_x - bonus_alignment + extra_info_alignment,
-            centerY * 0.4 - h3 / 4 + 7,
-            smallDigitalFont,
+            center_y_l * 0.4 - h3 / 4 + 7,
+            small_digi_font,
             dateText,
             alignment
          );
 
          // horizontal line
-         var w3 = dc.getTextWidthInPixels(dateText, smallDigitalFont);
+         var w3 = dc.getTextWidthInPixels(dateText, small_digi_font);
          dc.setPenWidth(2);
          dc.setColor(gsecondary_color, Graphics.COLOR_TRANSPARENT);
          dc.drawLine(
             target_info_x - bonus_alignment - w3 / 2 + extra_info_alignment,
-            centerY * 0.5 + 7,
+            center_y_l * 0.5 + 7,
             target_info_x - bonus_alignment + w3 / 2 + extra_info_alignment,
-            centerY * 0.5 + 7
+            center_y_l * 0.5 + 7
          );
       } else if (digital_style == 1 || digital_style == 3) {
          var hourText = hour.format(number_formater);
@@ -283,33 +275,36 @@ class DigitalDial extends Ui.Drawable {
          var h = dc.getFontHeight(boldF).toFloat();
          var minuW = dc.getTextWidthInPixels(minuText, normF).toFloat();
          var half = (hourW + minuW + 6.0) / 2.0;
-         var left = centerX - half;
+         var left = center_x_l - half;
 
          dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
          dc.drawText(
             left.toNumber(),
-            centerY - 70 + bonus + bonusy_smallsize,
+            center_y_l - 70 + bonus + bonusy_smallsize,
             boldF,
             hourText,
             Graphics.TEXT_JUSTIFY_LEFT
          );
          dc.drawText(
             (left + hourW + 6.0).toNumber(),
-            centerY - 70 + bonus + bonusy_smallsize,
+            center_y_l - 70 + bonus + bonusy_smallsize,
             normF,
             minuText,
             Graphics.TEXT_JUSTIFY_LEFT
          );
 
          var f_align = 40;
-         second_x = centerX + half + 1;
-         heart_x = centerX - half - 1;
+         second_x_l = center_x_l + half + 1;
+         heart_x_l = center_x_l - half - 1;
 
-         second_y =
-            centerY -
+         second_y_l =
+            center_y_l -
             second_font_height_half / 2 -
             (alwayon_style == 0 ? 3 : 6);
       }
+      second_x = second_x_l;
+      second_y = second_y_l;
+      heart_x = heart_x_l;
 
       removeFont();
    }

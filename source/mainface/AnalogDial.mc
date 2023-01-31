@@ -32,7 +32,7 @@ class AnalogDial extends Ui.Drawable {
       Drawable.initialize(params);
       secondHandDisabled = true;
 
-      if (centerX == 195) {
+      if (center_x == 195) {
          factor = 2;
       }
    }
@@ -151,8 +151,8 @@ class AnalogDial extends Ui.Drawable {
    function draw_analog_hands(dc) {
       dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
       drawHandAntiAlias(dc);
-      second_x = centerX;
-      second_y = centerY - second_font_height_half * 2;
+      second_x = center_x;
+      second_y = center_y - second_font_height_half * 2;
 
       if (secondHandDisabled) {
          return;
@@ -209,8 +209,8 @@ class AnalogDial extends Ui.Drawable {
    }
 
    function drawSecondHand(dc) {
-      var base_radius = centerX == 109 ? 0.0 : 11.0;
-      var minu_radius = centerX - 23.0;
+      var base_radius = center_x == 109 ? 0.0 : 11.0;
+      var minu_radius = center_x - 23.0;
       var base_thick = 3.0;
       var radian =
          2 * (getSecondHandFragment() / 60.0) * Math.PI - 0.5 * Math.PI;
@@ -227,8 +227,8 @@ class AnalogDial extends Ui.Drawable {
 
    //    function drawTiles(packed_array,font,dc,index) {
    //      var radian = (index.toFloat()/60.0)*(2*3.1415) - 0.5*3.1415;
-   //      var offset_rad_x = convertCoorX(radian, offset_rad)-centerX;
-   //      var offset_rad_y = convertCoorY(radian, offset_rad)-centerY;
+   //      var offset_rad_x = convertCoorX(radian, offset_rad)-center_x;
+   //      var offset_rad_y = convertCoorY(radian, offset_rad)-center_y;
    //      for(var i = 0; i < packed_array.size(); i++) {
    //      	var val = packed_array[i];
    //		var char = (val >> 16) & 255;
@@ -240,8 +240,8 @@ class AnalogDial extends Ui.Drawable {
 
    function drawTiles(packed_array, font, dc, index) {
       var radian = (index.toFloat() / 60.0) * (2 * 3.1415) - 0.5 * 3.1415;
-      var offset_rad_x = convertCoorX(radian, offset_rad) - centerX;
-      var offset_rad_y = convertCoorY(radian, offset_rad) - centerY;
+      var offset_rad_x = convertCoorX(radian, offset_rad) - center_x;
+      var offset_rad_y = convertCoorY(radian, offset_rad) - center_y;
       for (var i = 0; i < packed_array.size(); i++) {
          var val = packed_array[i];
          var char = (val >> 16) & 255;

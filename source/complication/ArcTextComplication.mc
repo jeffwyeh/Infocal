@@ -64,13 +64,13 @@ class ArcTextComplication extends Ui.Drawable {
 
    function initialize(params) {
       Drawable.initialize(params);
-      barRadius = centerX - ((13 * centerX) / 120).toNumber();
-      if (centerX == 109) {
+      barRadius = center_x - ((13 * center_x) / 120).toNumber();
+      if (center_x == 109) {
          kerning = 1.1;
-         barRadius = centerX - 11;
-      } else if (centerX == 130) {
+         barRadius = center_x - 11;
+      } else if (center_x == 130) {
          kerning = 0.95;
-      } else if (centerX == 195) {
+      } else if (center_x == 195) {
          kerning = 0.95;
          barRadius = barRadius + 4;
       }
@@ -82,7 +82,7 @@ class ArcTextComplication extends Ui.Drawable {
       text = params.get(:text);
       angle = params.get(:angle);
       perCharRadius = (kerning * 4.7 * Math.PI) / 100;
-      barRadius += (((baseDegree < 180 ? 8 : -3) * centerX) / 120).toNumber();
+      barRadius += (((baseDegree < 180 ? 8 : -3) * center_x) / 120).toNumber();
       accumulation_sign = baseDegree < 180 ? -1 : 1;
 
       alignment = Graphics.TEXT_JUSTIFY_VCENTER | Graphics.TEXT_JUSTIFY_CENTER;
@@ -108,10 +108,10 @@ class ArcTextComplication extends Ui.Drawable {
       dc.setPenWidth(20);
       var target_r =
          barRadius -
-         (((baseDegree < 180 ? 6 : -3) * centerX) / 120).toNumber();
+         (((baseDegree < 180 ? 6 : -3) * center_x) / 120).toNumber();
       dc.drawArc(
-         centerX,
-         centerY,
+         center_x,
+         center_y,
          target_r,
          Graphics.ARC_CLOCKWISE,
          360.0 - (baseDegree - 30.0),

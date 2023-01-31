@@ -17,40 +17,40 @@ class BarComplication extends Ui.Drawable {
       position = params.get(:position);
       if (position == 0) {
          // up
-         if (centerX == 120) {
-            position_y_draw = 52; //centerY - 36 - 18 - 14; // font height 14
+         if (center_x == 120) {
+            position_y_draw = 52; //center_y - 36 - 18 - 14; // font height 14
             position_y_draw_bonus = -13;
-         } else if (centerX == 130) {
-            position_y_draw = 58; //centerY - 36 - 18 - 14 - 4; // font height 14
+         } else if (center_x == 130) {
+            position_y_draw = 58; //center_y - 36 - 18 - 14 - 4; // font height 14
             position_y_draw_bonus = -18;
-         } else if (centerX == 140) {
-            position_y_draw = 64; //centerY - 36 - 18 - 14 - 8; // font height 14
+         } else if (center_x == 140) {
+            position_y_draw = 64; //center_y - 36 - 18 - 14 - 8; // font height 14
             position_y_draw_bonus = -18;
-         } else if (centerX == 195) {
-            position_y_draw = 89; //centerY - 36 - 18 - 14 - 8; // font height 14
+         } else if (center_x == 195) {
+            position_y_draw = 89; //center_y - 36 - 18 - 14 - 8; // font height 14
             position_y_draw_bonus = -36;
             factor = 2;
          } else {
-            position_y_draw = 44; //centerY - 36 - 18 - 14 + 5; // font height 14
+            position_y_draw = 44; //center_y - 36 - 18 - 14 + 5; // font height 14
             position_y_draw_bonus = -13;
          }
       } else {
          // down
-         if (centerX == 120) {
-            position_y_draw = 156; //centerY + 36;
+         if (center_x == 120) {
+            position_y_draw = 156; //center_y + 36;
             position_y_draw_bonus = 29;
-         } else if (centerX == 130) {
-            position_y_draw = 170; //centerY + 36 + 4;
+         } else if (center_x == 130) {
+            position_y_draw = 170; //center_y + 36 + 4;
             position_y_draw_bonus = 33;
-         } else if (centerX == 140) {
-            position_y_draw = 184; //centerY + 36 + 8;
+         } else if (center_x == 140) {
+            position_y_draw = 184; //center_y + 36 + 8;
             position_y_draw_bonus = 33;
-         } else if (centerX == 195) {
-            position_y_draw = 256; //centerY - 36 - 18 - 14 - 8; // font height 14
+         } else if (center_x == 195) {
+            position_y_draw = 256; //center_y - 36 - 18 - 14 - 8; // font height 14
             position_y_draw_bonus = 48;
             factor = 2;
          } else {
-            position_y_draw = 140; //centerY + 36 - 5;
+            position_y_draw = 140; //center_y + 36 - 5;
             position_y_draw_bonus = 29;
          }
       }
@@ -159,7 +159,7 @@ class BarComplication extends Ui.Drawable {
          if (icon != null) {
             dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
             dc.drawText(
-               centerX,
+               center_x,
                position_y_draw + position_y_draw_bonus,
                weatherFont,
                icon,
@@ -179,9 +179,9 @@ class BarComplication extends Ui.Drawable {
       title = title.toUpper();
       dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
       dc.drawText(
-         centerX,
+         center_x,
          position_y_draw + bonus_padding,
-         smallDigitalFont,
+         small_digi_font,
          title,
          Graphics.TEXT_JUSTIFY_CENTER
       );
