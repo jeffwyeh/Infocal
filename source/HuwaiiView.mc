@@ -303,7 +303,7 @@ class HuwaiiView extends WatchUi.WatchFace {
    }
 
    // Terminate any active timers and prepare for slow updates.
-   function onEnterSleep(dc) {
+   function onEnterSleep() {
       if (Application.getApp().getProperty("use_analog")) {
          var dialDisplay = View.findDrawableById("analog");
          if (dialDisplay != null) {
@@ -311,6 +311,7 @@ class HuwaiiView extends WatchUi.WatchFace {
          }
       } else {
          if (Application.getApp().getProperty("always_on_second")) {
+            var dc = screenbuffer.getDc();
             dc.setClip(
                second_x,
                second_y,
