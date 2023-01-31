@@ -54,7 +54,7 @@
         <param name="position">0</param>
     </drawable>
     
-    <drawable id="digital" class="MainDialHand"></drawable>
+    <drawable id="digital" class="DigitalDial"></drawable>
     <drawable id="analog" class="AnalogDial"></drawable>
     
 </layout>

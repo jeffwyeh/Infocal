@@ -5,7 +5,7 @@ using Toybox.System;
 using Toybox.Application;
 using Toybox.Time.Gregorian as Date;
 
-class MainDialHand extends Ui.Drawable {
+class DigitalDial extends Ui.Drawable {
    ////////////////////////
    /// common variables ///
    ////////////////////////
