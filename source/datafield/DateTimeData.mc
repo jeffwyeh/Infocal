@@ -158,7 +158,7 @@ class TimeSecondaryField extends BaseDataField {
       var secondary_zone_delta = (target + shift_val) * 3600 - to_utc_second;
 
       var now = Time.now();
-      var now_target_zone_delta = new Time.Duration(secondary_zone_delta);
+      var now_target_zone_delta = new Time.Duration(secondary_zone_delta.toNumber());
       var now_target_zone = now.add(now_target_zone_delta);
       var target_zone = Date.info(now_target_zone, Time.FORMAT_SHORT);
 

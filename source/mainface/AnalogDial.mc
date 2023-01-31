@@ -225,19 +225,6 @@ class AnalogDial extends Ui.Drawable {
       dc.drawLine(startx, starty, endx, endy);
    }
 
-   //    function drawTiles(packed_array,font,dc,index) {
-   //      var radian = (index.toFloat()/60.0)*(2*3.1415) - 0.5*3.1415;
-   //      var offset_rad_x = convertCoorX(radian, offset_rad)-center_x;
-   //      var offset_rad_y = convertCoorY(radian, offset_rad)-center_y;
-   //      for(var i = 0; i < packed_array.size(); i++) {
-   //      	var val = packed_array[i];
-   //		var char = (val >> 16) & 255;
-   //		var xpos = (val >> 8) & 255;
-   //		var ypos = (val >> 0) & 255;
-   //        dc.drawText((xpos+offset_x-offset_rad_x).toNumber(),(ypos+offset_y-offset_rad_y).toNumber(),font,char.toNumber().toChar(),Graphics.TEXT_JUSTIFY_LEFT);
-   //      }
-   //    }
-
    function drawTiles(packed_array, font, dc, index) {
       var radian = (index.toFloat() / 60.0) * (2 * 3.1415) - 0.5 * 3.1415;
       var offset_rad_x = convertCoorX(radian, offset_rad) - center_x;
@@ -254,7 +241,7 @@ class AnalogDial extends Ui.Drawable {
             (xpos * factor + xpos_bonus + offset_x - offset_rad_x).toNumber(),
             (ypos * factor + ypos_bonus + offset_y - offset_rad_y).toNumber(),
             font,
-            char.toNumber().toChar(),
+            char.toNumber().toString(),
             Graphics.TEXT_JUSTIFY_LEFT
          );
       }

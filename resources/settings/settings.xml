@@ -255,6 +255,8 @@
             <listEntry value="4">@Strings.movebar</listEntry>
             <listEntry value="5">@Strings.steps</listEntry>
             <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="36">@Strings.moderate</listEntry>
+            <listEntry value="37">@Strings.vigorous</listEntry>
             <listEntry value="10">@Strings.notification</listEntry>
             <listEntry value="11">@Strings.alarm</listEntry>
             <listEntry value="20">@Strings.phonestatus</listEntry>
@@ -294,6 +296,8 @@
             <listEntry value="4">@Strings.movebar</listEntry>
             <listEntry value="5">@Strings.steps</listEntry>
             <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="36">@Strings.moderate</listEntry>
+            <listEntry value="37">@Strings.vigorous</listEntry>
             <listEntry value="10">@Strings.notification</listEntry>
             <listEntry value="11">@Strings.alarm</listEntry>
             <listEntry value="20">@Strings.phonestatus</listEntry>
@@ -333,6 +337,8 @@
             <listEntry value="4">@Strings.movebar</listEntry>
             <listEntry value="5">@Strings.steps</listEntry>
             <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="36">@Strings.moderate</listEntry>
+            <listEntry value="37">@Strings.vigorous</listEntry>
             <listEntry value="10">@Strings.notification</listEntry>
             <listEntry value="11">@Strings.alarm</listEntry>
             <listEntry value="20">@Strings.phonestatus</listEntry>
@@ -372,6 +378,8 @@
             <listEntry value="4">@Strings.movebar</listEntry>
             <listEntry value="5">@Strings.steps</listEntry>
             <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="36">@Strings.moderate</listEntry>
+            <listEntry value="37">@Strings.vigorous</listEntry>
             <listEntry value="10">@Strings.notification</listEntry>
             <listEntry value="11">@Strings.alarm</listEntry>
             <listEntry value="20">@Strings.phonestatus</listEntry>
@@ -411,6 +419,8 @@
             <listEntry value="4">@Strings.movebar</listEntry>
             <listEntry value="5">@Strings.steps</listEntry>
             <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="36">@Strings.moderate</listEntry>
+            <listEntry value="37">@Strings.vigorous</listEntry>
             <listEntry value="10">@Strings.notification</listEntry>
             <listEntry value="11">@Strings.alarm</listEntry>
             <listEntry value="20">@Strings.phonestatus</listEntry>
@@ -450,6 +460,8 @@
             <listEntry value="4">@Strings.movebar</listEntry>
             <listEntry value="5">@Strings.steps</listEntry>
             <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="36">@Strings.moderate</listEntry>
+            <listEntry value="37">@Strings.vigorous</listEntry>
             <listEntry value="10">@Strings.notification</listEntry>
             <listEntry value="11">@Strings.alarm</listEntry>
             <listEntry value="20">@Strings.phonestatus</listEntry>
@@ -489,6 +501,8 @@
             <listEntry value="4">@Strings.movebar</listEntry>
             <listEntry value="5">@Strings.steps</listEntry>
             <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="36">@Strings.moderate</listEntry>
+            <listEntry value="37">@Strings.vigorous</listEntry>
             <listEntry value="10">@Strings.notification</listEntry>
             <listEntry value="11">@Strings.alarm</listEntry>
             <listEntry value="20">@Strings.phonestatus</listEntry>
@@ -528,6 +542,8 @@
             <listEntry value="4">@Strings.movebar</listEntry>
             <listEntry value="5">@Strings.steps</listEntry>
             <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="36">@Strings.moderate</listEntry>
+            <listEntry value="37">@Strings.vigorous</listEntry>
             <listEntry value="10">@Strings.notification</listEntry>
             <listEntry value="11">@Strings.alarm</listEntry>
             <listEntry value="20">@Strings.phonestatus</listEntry>

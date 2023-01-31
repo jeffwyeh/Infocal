@@ -251,7 +251,6 @@ class GraphComplication extends Ui.Drawable {
          settings = null;
       } catch (ex) {
          // currently unknown, weird bug
-         System.println(ex);
          dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
          dc.drawText(
             position_x,

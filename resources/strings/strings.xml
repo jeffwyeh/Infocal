@@ -64,6 +64,8 @@
     <string id="movebar">Move bar</string>
     <string id="steps">Steps</string>
     <string id="active">Active minutes</string>
+    <string id="moderate">Moderate active minutes</string>
+    <string id="vigorous">Vigorous active minutes</string>
     <string id="heartrate">Heart rate</string>
     <string id="date">Date</string>
     <string id="time">Digital time</string>

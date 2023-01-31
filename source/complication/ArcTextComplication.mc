@@ -126,7 +126,15 @@ class ArcTextComplication extends Ui.Drawable {
    }
 
    hidden function drawArcText(dc, text) {
-      var totalChar = text.length().toFloat();
+      var totalChar = 0;
+      try {
+         totalChar = text.length();
+      } catch (ex) {
+         // Hit an exception for some reason
+         // Display "ERR"
+         text = "ERR";
+         totalChar = text.length();
+      }
       var charArray = text.toUpper().toCharArray();
 
       var totalRad = 0.0;
@@ -151,7 +159,7 @@ class ArcTextComplication extends Ui.Drawable {
 
             set_font(targetRadian);
 
-            dc.drawText(labelCurX, labelCurY, font, charArray[i], alignment);
+            dc.drawText(labelCurX, labelCurY, font, charArray[i].toString(), alignment);
             font = null;
          }
       }

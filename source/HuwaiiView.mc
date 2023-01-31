@@ -241,7 +241,6 @@ class HuwaiiView extends WatchUi.WatchFace {
          if (Application.getApp().getProperty("always_on_second")) {
             var clockTime = System.getClockTime();
             var second_text = clockTime.sec.format("%02d");
-            var ss = dc.getTextDimensions(second_text, second_digi_font);
 
             dc.setClip(
                second_x,
@@ -250,7 +249,6 @@ class HuwaiiView extends WatchUi.WatchFace {
                second_clip_size[1]
             );
             dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
-            //				dc.setColor(Graphics.COLOR_TRANSPARENT, 0xffff00);
             dc.clear();
             dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
             dc.drawText(
@@ -274,7 +272,6 @@ class HuwaiiView extends WatchUi.WatchFace {
             var s2 = (second_clip_size[0] * 1.25).toNumber();
             dc.setClip(heart_x - s2 - 1, second_y, s2 + 2, second_clip_size[1]);
             dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
-            //				dc.setColor(Graphics.COLOR_TRANSPARENT, 0xffff00);
             dc.clear();
 
             dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
@@ -306,10 +303,23 @@ class HuwaiiView extends WatchUi.WatchFace {
    }
 
    // Terminate any active timers and prepare for slow updates.
-   function onEnterSleep() {
-      var dialDisplay = View.findDrawableById("analog");
-      if (dialDisplay != null) {
-         dialDisplay.disableSecondHand();
+   function onEnterSleep(dc) {
+      if (Application.getApp().getProperty("use_analog")) {
+         var dialDisplay = View.findDrawableById("analog");
+         if (dialDisplay != null) {
+            dialDisplay.disableSecondHand();
+         }
+      } else {
+         if (Application.getApp().getProperty("always_on_second")) {
+            dc.setClip(
+               second_x,
+               second_y,
+               second_clip_size[0],
+               second_clip_size[1]
+            );
+            dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
+            dc.clear();
+         }
       }
    }
 

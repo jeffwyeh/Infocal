@@ -52,6 +52,9 @@ enum /* FIELD_TYPES */ {
    FIELD_TYPE_PRECIPITATION_GARMIN,
    FIELD_TYPE_WEATHER_GARMIN,
    FIELD_TYPE_TEMPERATURE_HL_GARMIN,
+
+   FIELD_TYPE_MODERATE = 36,
+   FIELD_TYPE_VIGOROUS,
 }
 
 function buildFieldObject(type) {
@@ -69,6 +72,10 @@ function buildFieldObject(type) {
       return new StepField(FIELD_TYPE_STEP);
    } else if (type == FIELD_TYPE_ACTIVE) {
       return new ActiveField(FIELD_TYPE_ACTIVE);
+   } else if (type == FIELD_TYPE_MODERATE) {
+      return new ActiveModerateField(FIELD_TYPE_MODERATE);
+   } else if (type == FIELD_TYPE_VIGOROUS) {
+      return new ActiveVigorousField(FIELD_TYPE_VIGOROUS);
    } else if (type == FIELD_TYPE_DATE) {
       return new DateField(FIELD_TYPE_DATE);
    } else if (type == FIELD_TYPE_TIME) {

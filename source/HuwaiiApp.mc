@@ -188,8 +188,6 @@ class HuwaiiApp extends Application.AppBase {
    // pendingWebRequests keys.
    (:background_method)
    function onBackgroundData(data) {
-      Sys.println("onBackgroundData() called");
-
       var pendingWebRequests = getProperty("PendingWebRequests");
       if (pendingWebRequests == null) {
          pendingWebRequests = {};

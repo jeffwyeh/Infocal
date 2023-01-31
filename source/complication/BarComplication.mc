@@ -12,9 +12,12 @@ class BarComplication extends Ui.Drawable {
 
    hidden var factor = 1;
 
+   var field_type;
+
    function initialize(params) {
       Drawable.initialize(params);
       position = params.get(:position);
+      field_type = params.get(:field_type);
       if (position == 0) {
          // up
          if (center_x == 120) {
@@ -206,7 +209,7 @@ class BarComplication extends Ui.Drawable {
             (xpos * factor + xpos_bonus).toNumber(),
             (ypos * factor + ypos_bonus).toNumber(),
             font,
-            char.toNumber().toChar(),
+            char.toNumber().toString(),
             Graphics.TEXT_JUSTIFY_LEFT
          );
       }
