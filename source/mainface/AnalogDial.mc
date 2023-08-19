@@ -225,23 +225,30 @@ class AnalogDial extends Ui.Drawable {
       dc.drawLine(startx, starty, endx, endy);
    }
 
+   //! Draw *image* font based on parameters packed in jsondata
+   //!
+   //! - The hour/minute/bar images are drawn from custom made fonts
+   //! - The JsonData files contain packed instructions on how to draw 
+   //!   the full image from the font characters.
+   //! - Each JsonData number represents an image part (tile) with byte encoding:
+   //!   [ flags|char|xpos|ypos ]
    function drawTiles(packed_array, font, dc, index) {
       var radian = (index.toFloat() / 60.0) * (2 * 3.1415) - 0.5 * 3.1415;
       var offset_rad_x = convertCoorX(radian, offset_rad) - center_x;
       var offset_rad_y = convertCoorY(radian, offset_rad) - center_y;
       for (var i = 0; i < packed_array.size(); i++) {
          var val = packed_array[i];
-         var char = (val >> 16) & 255;
+         var flag = (val >> 24) & 255;
+         var code = (val >> 16) & 255;
          var xpos = (val >> 8) & 255;
          var ypos = (val >> 0) & 255;
-         var flag = (val >> 24) & 255;
          var xpos_bonus = (flag & 0x01) == 0x01 ? 1 : 0;
          var ypos_bonus = (flag & 0x10) == 0x10 ? 1 : 0;
          dc.drawText(
             (xpos * factor + xpos_bonus + offset_x - offset_rad_x).toNumber(),
             (ypos * factor + ypos_bonus + offset_y - offset_rad_y).toNumber(),
             font,
-            char.toNumber().toString(),
+            code.toChar().toString(),
             Graphics.TEXT_JUSTIFY_LEFT
          );
       }
