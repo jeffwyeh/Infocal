@@ -196,20 +196,27 @@ class BarComplication extends Ui.Drawable {
       weatherFont = null;
    }
 
+   //! Draw *image* font based on parameters packed in jsondata
+   //!
+   //! - The hour/minute/bar images are drawn from custom made fonts
+   //! - The JsonData files contain packed instructions on how to draw 
+   //!   the full image from the font characters.
+   //! - Each JsonData number represents an image part (tile) with byte encoding:
+   //!   [ flags|char|xpos|ypos ]
    function drawTiles(packed_array, font, dc) {
       for (var i = 0; i < packed_array.size(); i++) {
          var val = packed_array[i];
-         var char = (val >> 16) & 255;
+         var flag = (val >> 24) & 255;
+         var code = (val >> 16) & 255;
          var xpos = (val >> 8) & 255;
          var ypos = (val >> 0) & 255;
-         var flag = (val >> 24) & 255;
          var xpos_bonus = (flag & 0x01) == 0x01 ? 1 : 0;
          var ypos_bonus = (flag & 0x10) == 0x10 ? 1 : 0;
          dc.drawText(
             (xpos * factor + xpos_bonus).toNumber(),
             (ypos * factor + ypos_bonus).toNumber(),
             font,
-            char.toNumber().toString(),
+            code.toChar().toString(),
             Graphics.TEXT_JUSTIFY_LEFT
          );
       }
