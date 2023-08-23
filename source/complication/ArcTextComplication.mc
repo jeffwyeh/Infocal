@@ -127,11 +127,10 @@ class ArcTextComplication extends Ui.Drawable {
 
    hidden function drawArcText(dc, text) {
       var totalChar = 0;
-      try {
+      if (text instanceof String) {
          totalChar = text.length();
-      } catch (ex) {
-         // Hit an exception for some reason
-         // Display "ERR"
+      } else {
+         // Error
          text = "ERR";
          totalChar = text.length();
       }
